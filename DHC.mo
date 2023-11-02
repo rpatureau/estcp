@@ -29,12 +29,9 @@ package DHC "Models for district heating and cooling systems"
           VTanHeaWat=datChi.PLRMin*datChi.mCon_flow_nominal*5*60/1000,
           VTanChiWat=datChi.PLRMin*datChi.mEva_flow_nominal*5*60/1000,
           colChiWat(mCon_flow_nominal={colAmbWat.mDis_flow_nominal,datChi.mEva_flow_nominal}),
-
           colHeaWat(mCon_flow_nominal={colAmbWat.mDis_flow_nominal,datChi.mCon_flow_nominal}),
-
           colAmbWat(mCon_flow_nominal=if have_borFie then {hex.m2_flow_nominal,
                 datBorFie.conDat.mBorFie_flow_nominal} else {hex.m2_flow_nominal}),
-
           totPPum(nin=3),
           totPHea(nin=1),
           totPCoo(nin=1),
@@ -42,6 +39,7 @@ package DHC "Models for district heating and cooling systems"
           nPorts_aHeaWat=1,
           nPorts_aChiWat=1,
           nPorts_bHeaWat=1);
+
         parameter Boolean have_borFie=false
           "Set to true in case a borefield is used in addition of the district HX"
           annotation (Evaluate=true);
@@ -823,12 +821,12 @@ src=\"modelica://Buildings/Resources/Images/Experimental/DHC/EnergyTransferStati
           annotation (Placement(transformation(extent={{-100,230},{-80,250}})));
         estcp.DHC.EnergyTransferStations.Combined.Controls.PrimaryVariableFlow conFloEvaSHW(
           final Q_flow_nominal=-QHotWat_flow_nominal*(1 - 1/COPHotWat_nominal),
-
           final dT_nominal=-dT_nominal,
           final ratFloMin=ratFloMin,
           final cp=cpSer_default) if have_hotWat and have_varFloEva
           "Mass flow rate control"
           annotation (Placement(transformation(extent={{-60,90},{-40,110}})));
+
         estcp.DHC.EnergyTransferStations.Combined.Controls.PrimaryVariableFlow conFloConHHW(
           final Q_flow_nominal=QHeaWat_flow_nominal,
           final dT_nominal=dT_nominal,
@@ -837,11 +835,11 @@ src=\"modelica://Buildings/Resources/Images/Experimental/DHC/EnergyTransferStati
           annotation (Placement(transformation(extent={{-100,270},{-80,290}})));
         estcp.DHC.EnergyTransferStations.Combined.Controls.PrimaryVariableFlow conFloEvaHHW(
           final Q_flow_nominal=-QHeaWat_flow_nominal*(1 - 1/COPHeaWat_nominal),
-
           final dT_nominal=-dT_nominal,
           final ratFloMin=ratFloMin,
           final cp=cpSer_default) if have_varFloEva "Mass flow rate control"
           annotation (Placement(transformation(extent={{-60,230},{-40,250}})));
+
         Buildings.Controls.OBC.CDL.Reals.Max priOve if have_varFloCon
           "Ensure primary overflow"
           annotation (Placement(transformation(extent={{-60,270},{-40,290}})));
@@ -3269,7 +3267,7 @@ fifth generation district heating and cooling systems.
           "Base subsystem with geothermal borefield"
           extends Buildings.Fluid.Interfaces.PartialTwoPortInterface(
             final m_flow_nominal=datBorFie.conDat.mBorFie_flow_nominal);
-          replaceable model BoreFieldType=
+          replaceable model BoreFieldType =
               Buildings.Fluid.Geothermal.Borefields.OneUTube constrainedby
             Buildings.Fluid.Geothermal.Borefields.BaseClasses.PartialBorefield(
             redeclare package Medium = Medium,
@@ -3461,7 +3459,7 @@ alleviates non-convergence issues.)
           "Base subsystem with heat recovery chiller"
           replaceable package Medium=Modelica.Media.Interfaces.PartialMedium
             "Medium model"
-            annotation (choices(choice(redeclare package Medium=
+            annotation (choices(choice(redeclare package Medium =
                     Buildings.Media.Water                                             "Water"),
             choice(redeclare package Medium =
                     Buildings.Media.Antifreeze.PropyleneGlycolWater (property_T=293.15,X_a=0.40)
@@ -4111,14 +4109,14 @@ the secondary loops.
         model HeatPump "Base subsystem with water-to-water heat pump"
           replaceable package Medium1=Modelica.Media.Interfaces.PartialMedium
             "Medium model on condenser side"
-            annotation (choices(choice(redeclare package Medium=
+            annotation (choices(choice(redeclare package Medium =
                     Buildings.Media.Water                                             "Water"),
             choice(redeclare package Medium =
               Buildings.Media.Antifreeze.PropyleneGlycolWater (property_T=293.15,X_a=0.40)
             "Propylene glycol water, 40% mass fraction")));
           replaceable package Medium2=Modelica.Media.Interfaces.PartialMedium
             "Medium model on evaporator side"
-            annotation (choices(choice(redeclare package Medium=
+            annotation (choices(choice(redeclare package Medium =
                     Buildings.Media.Water                                             "Water"),
             choice(redeclare package Medium =
               Buildings.Media.Antifreeze.PropyleneGlycolWater (property_T=293.15,X_a=0.40)
@@ -5209,7 +5207,6 @@ Buildings.Experimental.DHC.EnergyTransferStations.Combined.Subsystems.Chiller</a
               redeclare final package Medium2 = Medium,
               show_T=true,
               conCon=estcp.DHC.EnergyTransferStations.Types.ConnectionConfiguration.Pump,
-
               dp1Hex_nominal=20E3,
               dp2Hex_nominal=20E3,
               Q_flow_nominal=1E6,
@@ -5218,6 +5215,7 @@ Buildings.Experimental.DHC.EnergyTransferStations.Combined.Subsystems.Chiller</a
               T_a2_nominal=275.15,
               T_b2_nominal=279.15) "Heat exchanger with primary pump"
               annotation (Placement(transformation(extent={{30,-90},{50,-70}})));
+
             Buildings.Controls.OBC.CDL.Reals.Switch swi
               "Switch secondary temperature value depending on heat/cold rejection mode"
               annotation (Placement(transformation(extent={{-120,-90},{-100,-70}})));
@@ -5254,7 +5252,6 @@ Buildings.Experimental.DHC.EnergyTransferStations.Combined.Subsystems.Chiller</a
               redeclare final package Medium2 = Medium,
               show_T=true,
               conCon=estcp.DHC.EnergyTransferStations.Types.ConnectionConfiguration.TwoWayValve,
-
               dp1Hex_nominal=20E3,
               dp2Hex_nominal=20E3,
               Q_flow_nominal=1E6,
@@ -5509,8 +5506,8 @@ primary flow rate is modulated by means of a variable speed pump
                   origin={70,0})));
             estcp.DHC.EnergyTransferStations.BaseClasses.Pump_m_flow pum1(
                 redeclare package Medium = Medium, final m_flow_nominal=
-                  m_flow_nominal) "Chilled water HX secondary pump" annotation
-              (Placement(transformation(extent={{10,-10},{-10,10}})));
+                  m_flow_nominal) "Chilled water HX secondary pump" annotation (
+               Placement(transformation(extent={{10,-10},{-10,10}})));
             estcp.DHC.EnergyTransferStations.BaseClasses.Pump_m_flow pum2(
                 redeclare package Medium = Medium, final m_flow_nominal=
                   m_flow_nominal) "Chilled water HX secondary pump"
@@ -5632,7 +5629,6 @@ period set by the controller.
               redeclare final package Medium2 = Medium,
               show_T=true,
               conCon=estcp.DHC.EnergyTransferStations.Types.ConnectionConfiguration.Pump,
-
               dp1Hex_nominal=3E4,
               dp2Hex_nominal=3E4,
               Q_flow_nominal=-1E6,
@@ -5641,6 +5637,7 @@ period set by the controller.
               T_a2_nominal=293.15,
               T_b2_nominal=283.15) "Heat exchanger with primary pump"
               annotation (Placement(transformation(extent={{20,-70},{40,-50}})));
+
             Buildings.Fluid.Sensors.TemperatureTwoPort senT1OutPum(redeclare
                 final package Medium =
                                  Medium, m_flow_nominal=hexPum.m1_flow_nominal)
@@ -5675,7 +5672,6 @@ period set by the controller.
               redeclare final package Medium2 = Medium,
               show_T=true,
               conCon=estcp.DHC.EnergyTransferStations.Types.ConnectionConfiguration.TwoWayValve,
-
               dp1Hex_nominal=3E4,
               dp2Hex_nominal=3E4,
               Q_flow_nominal=-1E6,
@@ -5684,6 +5680,7 @@ period set by the controller.
               T_a2_nominal=293.15,
               T_b2_nominal=283.15) "Heat exchanger with primary control valve"
               annotation (Placement(transformation(extent={{20,10},{40,30}})));
+
             Buildings.Fluid.Sources.Boundary_pT bou1InlVal(
               redeclare package Medium = Medium,
               p=Medium.p_default + 45E3,
@@ -6635,8 +6632,8 @@ Buildings.Experimental.DHC.EnergyTransferStations.Combined</a>.
             have_weaBus=false);
 
           parameter
-            estcp.DHC.EnergyTransferStations.Types.ConnectionConfiguration conCon=estcp.DHC.EnergyTransferStations.Types.ConnectionConfiguration
-              .Pump "District connection configuration"
+            estcp.DHC.EnergyTransferStations.Types.ConnectionConfiguration conCon=estcp.DHC.EnergyTransferStations.Types.ConnectionConfiguration.
+               Pump "District connection configuration"
             annotation (Evaluate=true);
           parameter Integer nSysHea
             "Number of heating systems"
@@ -8239,8 +8236,8 @@ By default the model is configured in steady-state.
           final Ti=Ti,
           final Td=Td,
           final yMax=yMax,
-          final yMin=yMin) "District return temperature controller" annotation
-          (Placement(transformation(extent={{-220,240},{-200,260}})));
+          final yMin=yMin) "District return temperature controller" annotation (
+           Placement(transformation(extent={{-220,240},{-200,260}})));
         Buildings.Fluid.Sensors.TemperatureTwoPort senTBuiSup(
           redeclare final package Medium = MediumSer,
           final m_flow_nominal=mBui_flow_nominal)
@@ -9008,8 +9005,8 @@ First implementation.
           final Ti=Ti,
           final Td=Td,
           final yMax=yMax,
-          final yMin=yMin) "Building supply temperature controller" annotation
-          (Placement(transformation(extent={{-130,-230},{-110,-210}})));
+          final yMin=yMin) "Building supply temperature controller" annotation (
+           Placement(transformation(extent={{-130,-230},{-110,-210}})));
 
         Modelica.Blocks.Math.Add dTDis(
           final k1=-1)
@@ -10363,17 +10360,17 @@ First implementation.
                   300,300}})));
       end BuildingTimeSeriesWithETS;
 
-      model BuildingTimeSeriesWithETS_borefield
+      model BuildingTimeSeriesWithETS_chiller
         "Model of a building with loads provided as time series, connected to an ETS"
-        extends estcp.DHC.Loads.Combined.BaseClasses.PartialBuildingWithETS_borefield(
+        extends
+          estcp.DHC.Loads.Combined.BaseClasses.PartialBuildingWithETS_chiller(
             redeclare
             estcp.DHC.Loads.BaseClasses.Examples.BaseClasses.BuildingTimeSeries bui(
             final filNam=filNam,
-            have_hotWat=true,
-            T_aHeaWat_nominal=ets.THeaWatSup_nominal,
-            T_bHeaWat_nominal=ets.THeaWatRet_nominal,
-            T_aChiWat_nominal=ets.TChiWatSup_nominal,
-            T_bChiWat_nominal=ets.TChiWatRet_nominal), ets(
+            T_aHeaWat_nominal=THeaWatSup_nominal,
+            T_bHeaWat_nominal=THeaWatSup_nominal - 5,
+            T_aChiWat_nominal=TChiWatSup_nominal,
+            T_bChiWat_nominal=TChiWatSup_nominal + 5), ets(
             have_hotWat=true,
             QChiWat_flow_nominal=QCoo_flow_nominal,
             QHeaWat_flow_nominal=QHea_flow_nominal,
@@ -10397,29 +10394,6 @@ First implementation.
             filNam=Modelica.Utilities.Files.loadResource(filNam))
           "Hot water design load (>=0)"
           annotation (Dialog(group="Design parameter"));
-        Buildings.Controls.OBC.CDL.Interfaces.RealInput THotWatSupSet(
-          final unit="K",
-          displayUnit="degC")
-          "Service hot water supply temperature set point"
-          annotation (Placement(
-              transformation(
-              extent={{-20,-20},{20,20}},
-              rotation=0,
-              origin={-320,40}),  iconTransformation(
-              extent={{-20,-20},{20,20}},
-              rotation=0,
-              origin={-120,30})));
-        Buildings.Controls.OBC.CDL.Interfaces.RealInput TColWat(
-          final unit="K",
-          displayUnit="degC")
-          "Cold water temperature"
-          annotation (Placement(transformation(
-              extent={{-20,-20},{20,20}},
-              rotation=0,
-              origin={-320,0}),   iconTransformation(
-              extent={{-20,-20},{20,20}},
-              rotation=90,
-              origin={-80,-120})));
         Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter loaHeaNor(
           k=1/QHea_flow_nominal) "Normalized heating load"
           annotation (Placement(transformation(extent={{-200,-110},{-180,-90}})));
@@ -10430,12 +10404,6 @@ First implementation.
               QCoo_flow_nominal) "Normalized cooling load"
           annotation (Placement(transformation(extent={{-200,-150},{-180,-130}})));
       equation
-        connect(bui.QReqHotWat_flow, ets.loaSHW) annotation (Line(points={{28,4},{28,
-                -10},{-64,-10},{-64,-74},{-34,-74}}, color={0,0,127}));
-        connect(THotWatSupSet, ets.THotWatSupSet) annotation (Line(points={{-320,40},
-                {-136,40},{-136,-66},{-34,-66}},  color={0,0,127}));
-        connect(TColWat, ets.TColWat) annotation (Line(points={{-320,0},{-148,0},{
-                -148,-70},{-34,-70}},  color={0,0,127}));
         connect(enaHeaCoo[1].y, ets.uHea) annotation (Line(points={{-88,-120},{-40,-120},
                 {-40,-48},{-34,-48}},       color={255,0,255}));
         connect(enaHeaCoo[2].y, ets.uCoo) annotation (Line(points={{-88,-120},{-40,-120},
@@ -10496,7 +10464,7 @@ First implementation.
 </ul>
 </html>"),Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-300,-300},{
                   300,300}})));
-      end BuildingTimeSeriesWithETS_borefield;
+      end BuildingTimeSeriesWithETS_chiller;
 
       package Examples "This package contains example models"
         extends Modelica.Icons.ExamplesPackage;
@@ -10599,6 +10567,95 @@ First implementation.
 </ul>
 </html>"));
         end BuildingTimeSeriesWithETS;
+
+        model BuildingTimeSeriesWithETS_chiller
+          "Example model of a building with loads provided as time series for heat pump heating and free cooling in an ambient district network"
+          extends Modelica.Icons.Example;
+          package Medium=Buildings.Media.Water
+            "Medium model";
+          Buildings.Fluid.Sources.Boundary_pT supAmbWat(
+            redeclare package Medium = Medium,
+            p(displayUnit="bar"),
+            use_T_in=true,
+            T=280.15,
+            nPorts=1) "Ambient water supply"
+            annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,origin={-50,-10})));
+          Buildings.Fluid.Sources.Boundary_pT sinAmbWat(
+            redeclare package Medium = Medium,
+            p(displayUnit="bar"),
+            nPorts=1) "Sink for ambient water"
+            annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,origin={-50,-70})));
+          Buildings.Fluid.Sensors.MassFlowRate senMasFlo(redeclare package Medium = Medium)
+            "Mass flow rate sensor"
+            annotation (Placement(transformation(extent={{-20,-20},{0,0}})));
+          Modelica.Blocks.Sources.Constant TDisSup(k(
+              unit="K",
+              displayUnit="degC") = 288.15)
+            "District supply temperature"
+            annotation (Placement(transformation(extent={{-92,-16},{-72,4}})));
+          estcp.DHC.Loads.Combined.BuildingTimeSeriesWithETS_chiller bui(
+            redeclare package MediumSer = Medium,
+            redeclare package MediumBui = Medium,
+            bui(facMul=10),
+            allowFlowReversalSer=true,
+            filNam=
+                "modelica://Buildings/Resources/Data/Experimental/DHC/Loads/Examples/SwissOffice_20190916.mos")
+            annotation (Placement(transformation(extent={{40,-20},{60,0}})));
+         Buildings.Controls.OBC.CDL.Reals.Sources.Constant TChiWatSupSet(k=bui.TChiWatSup_nominal)
+            "Chilled water supply temperature set point"
+            annotation (Placement(transformation(extent={{-90,60},{-70,80}})));
+         Buildings.Controls.OBC.CDL.Reals.Sources.Constant THeaWatSupMaxSet(k=bui.THeaWatSup_nominal)
+            "Heating water supply temperature set point - Maximum value"
+            annotation (Placement(transformation(extent={{-40,60},{-20,80}})));
+         Buildings.Controls.OBC.CDL.Reals.Sources.Constant THeaWatSupMinSet(
+           k(final unit="K",
+             displayUnit="degC") = 301.15)
+           "Heating water supply temperature set point - Minimum value"
+            annotation (Placement(transformation(extent={{0,60},{20,80}})));
+        equation
+          connect(supAmbWat.ports[1], senMasFlo.port_a)
+            annotation (Line(points={{-40,-10},{-20,-10}},
+                                                         color={0,127,255}));
+          connect(TDisSup.y,supAmbWat. T_in)
+            annotation (Line(points={{-71,-6},{-62,-6}}, color={0,0,127}));
+          connect(senMasFlo.port_b, bui.port_aSerAmb) annotation (Line(points={{0,-10},
+                  {40,-10}},              color={0,127,255}));
+          connect(sinAmbWat.ports[1], bui.port_bSerAmb) annotation (Line(points={{-40,-70},
+                  {70,-70},{70,-10},{60,-10}}, color={0,127,255}));
+          connect(THeaWatSupMinSet.y, bui.THeaWatSupMinSet) annotation (Line(points={{22,70},
+                  {34,70},{34,0},{38,0},{38,-1}},                 color={0,0,127}));
+          connect(THeaWatSupMaxSet.y, bui.THeaWatSupMaxSet) annotation (Line(points={{-18,70},
+                  {-10,70},{-10,34},{32,34},{32,-3},{38,-3}},     color={0,0,127}));
+          connect(TChiWatSupSet.y, bui.TChiWatSupSet) annotation (Line(points={{-68,70},
+                  {-52,70},{-52,32},{30,32},{30,-5},{38,-5}},
+                                                        color={0,0,127}));
+          annotation (
+            Icon(
+              coordinateSystem(
+                preserveAspectRatio=false)),
+            Diagram(
+                coordinateSystem(
+                preserveAspectRatio=false)),
+            __Dymola_Commands(
+              file="modelica://Buildings/Resources/Scripts/Dymola/Experimental/DHC/Loads/Combined/Examples/BuildingTimeSeriesWithETS.mos" "Simulate and plot"),
+            experiment(
+              StopTime=864000,
+              Tolerance=1e-06),
+            Documentation(info="<html>
+<p>
+Example model of a building with loads provided as time series for heat
+pump space heating, heat pump domestic hot water heating,
+and free cooling in an ambient district network.
+</p>
+</html>",         revisions="<html>
+<ul>
+<li>
+May 3, 2023, by David Blum:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
+        end BuildingTimeSeriesWithETS_chiller;
         annotation (Documentation(info="<html>
 <p>
 This package contains an example illustrating the use of the model in
@@ -10743,7 +10800,7 @@ First implementation.
 </html>"));
         end PartialBuildingWithETS;
 
-        model PartialBuildingWithETS_borefield
+        model PartialBuildingWithETS_chiller
           "Partial model with ETS model and partial building model"
           extends estcp.DHC.Loads.BaseClasses.PartialBuildingWithPartialETS(
             nPorts_heaWat=1,
@@ -10751,7 +10808,7 @@ First implementation.
             redeclare estcp.DHC.EnergyTransferStations.Combined.ChillerBorefield ets(
             hex(show_T=true),
               WSE(show_T=true),
-              conCon=estcp.DHC.EnergyTransferStations.Types.ConnectionConfiguration.TwoWayValve,
+              conCon=estcp.DHC.EnergyTransferStations.Types.ConnectionConfiguration.Pump,
               dp1Hex_nominal=20E3,
               dp2Hex_nominal=20E3,
               QHex_flow_nominal=abs(QChiWat_flow_nominal),
@@ -10898,7 +10955,7 @@ First implementation.
 </li>
 </ul>
 </html>"));
-        end PartialBuildingWithETS_borefield;
+        end PartialBuildingWithETS_chiller;
       annotation (Documentation(info="<html>
 <p>
 This package contains base classes that are used to construct the classes in
@@ -12096,8 +12153,7 @@ First implementation.
             "Guess value of dp = port_a.p - port_b.p"
             annotation (Dialog(tab="Advanced"));
 
-          Buildings.Fluid.Sensors.Pressure pUp(redeclare final package Medium
-              =                                                                 Medium)
+          Buildings.Fluid.Sensors.Pressure pUp(redeclare final package Medium = Medium)
             "Pressure sensor"
             annotation (Placement(transformation(extent={{-90,50},{-70,70}})));
           Buildings.Utilities.Math.SmoothMax dpSet(final deltaX=0.5) "Pressure drop setpoint"
@@ -15604,13 +15660,13 @@ First implementation.
               redeclare package Medium = Medium,
               m_flow_nominal=m_flow_nominal,
               typDis=estcp.DHC.Loads.BaseClasses.Types.DistributionType.ChangeOver,
-
               have_pum=true,
               have_val=true,
               dp_nominal=100000,
               nPorts_a1=1,
               nPorts_b1=1) "Secondary distribution system"
               annotation (Placement(transformation(extent={{40,10},{60,30}})));
+
             Buildings.Fluid.Sources.Boundary_pT souPri(
               redeclare package Medium=Medium,
               use_T_in=true,
@@ -16413,12 +16469,12 @@ First implementation.
           estcp.DHC.Loads.BaseClasses.Examples.BaseClasses.BuildingTimeSeries bui(
             filNam=
                 "modelica://Buildings/Resources/Data/Experimental/DHC/Loads/Examples/SwissResidential_20190916.mos",
-
             nPorts_aHeaWat=1,
             nPorts_aChiWat=1,
             nPorts_bHeaWat=1,
             nPorts_bChiWat=1) "Building"
             annotation (Placement(transformation(extent={{10,-4},{30,16}})));
+
           Buildings.Fluid.Sources.Boundary_pT sinHeaWat(
             redeclare package Medium=Medium1,
             nPorts=1)
@@ -16575,10 +16631,10 @@ First implementation.
             have_heaWat=false,
             filNam=
                 "modelica://Buildings/Resources/Data/Experimental/DHC/Loads/Examples/SwissResidential_20190916.mos",
-
             nPorts_aChiWat=1,
             nPorts_bChiWat=1) "Building wint cooling only"
             annotation (Placement(transformation(extent={{-10,100},{10,120}})));
+
           Buildings.Fluid.Sources.Boundary_pT sinChiWat(
             redeclare package Medium=Medium1,
             nPorts=1)
@@ -16614,12 +16670,12 @@ First implementation.
             have_chiWat=false,
             filNam=
                 "modelica://Buildings/Resources/Data/Experimental/DHC/Loads/Examples/SwissResidential_20190916.mos",
-
             nPorts_aChiWat=1,
             nPorts_bChiWat=1,
             nPorts_aHeaWat=1,
             nPorts_bHeaWat=1) "Building with heating only"
             annotation (Placement(transformation(extent={{-10,-20},{10,0}})));
+
           Modelica.Blocks.Sources.RealExpression THeaWatSup(
             y=buiHea.T_aHeaWat_nominal)
             "Heating water supply temperature"
@@ -16916,13 +16972,13 @@ First implementation.
               redeclare package Medium = Medium,
               m_flow_nominal=terUni.mChiWat_flow_nominal,
               typDis=estcp.DHC.Loads.BaseClasses.Types.DistributionType.ChilledWater,
-
               have_pum=true,
               have_val=true,
               dp_nominal=100000,
               nPorts_a1=1,
               nPorts_b1=1) "Chilled water distribution system" annotation (
                 Placement(transformation(extent={{-100,-270},{-80,-250}})));
+
             Buildings.Controls.OBC.CDL.Reals.Sources.Constant TSetSecHea(
               k=308.15,
               y(final unit="K",
@@ -17168,23 +17224,22 @@ First implementation.
             estcp.DHC.Loads.BaseClasses.FlowDistribution disFloHea(
               redeclare package Medium = Medium,
               m_flow_nominal=sum(terUni.mHeaWat_flow_nominal .* terUni.facMul),
-
               have_pum=true,
               dp_nominal=100000,
               nPorts_a1=nZon,
               nPorts_b1=nZon) "Heating water distribution system" annotation (
                 Placement(transformation(extent={{-140,-110},{-120,-90}})));
+
             estcp.DHC.Loads.BaseClasses.FlowDistribution disFloCoo(
               redeclare package Medium = Medium,
               m_flow_nominal=sum(terUni.mChiWat_flow_nominal .* terUni.facMul),
-
               typDis=estcp.DHC.Loads.BaseClasses.Types.DistributionType.ChilledWater,
-
               have_pum=true,
               dp_nominal=100000,
               nPorts_a1=nZon,
               nPorts_b1=nZon) "Chilled water distribution system" annotation (
                 Placement(transformation(extent={{-138,-270},{-118,-250}})));
+
           equation
             connect(terUni.port_bHeaWat,disFloHea.ports_a1)
               annotation (Line(points={{-180,-58.3333},{-100,-58.3333},{-100,-94},{-120,
@@ -17372,11 +17427,11 @@ First implementation.
               redeclare package Medium = Medium,
               m_flow_nominal=terUni.mChiWat_flow_nominal,
               typDis=estcp.DHC.Loads.BaseClasses.Types.DistributionType.ChilledWater,
-
               dp_nominal=100000,
               nPorts_a1=nZon,
               nPorts_b1=nZon) "Chilled water distribution system" annotation (
                 Placement(transformation(extent={{-120,-270},{-100,-250}})));
+
           equation
             connect(qRadGai_flow.y,multiplex3_1.u1[1])
               annotation (Line(points={{-59,80},{-40,80},{-40,17},{-22,17}},  color={0,0,127},smooth=Smooth.None));
@@ -17594,23 +17649,22 @@ First implementation.
             estcp.DHC.Loads.BaseClasses.FlowDistribution disFloHea(
               redeclare package Medium = Medium,
               m_flow_nominal=sum(terUni.mHeaWat_flow_nominal .* terUni.facMul),
-
               have_pum=true,
               dp_nominal=100000,
               nPorts_a1=nZon,
               nPorts_b1=nZon) "Heating water distribution system" annotation (
                 Placement(transformation(extent={{-200,-190},{-180,-170}})));
+
             estcp.DHC.Loads.BaseClasses.FlowDistribution disFloCoo(
               redeclare package Medium = Medium,
               m_flow_nominal=sum(terUni.mChiWat_flow_nominal .* terUni.facMul),
-
               typDis=estcp.DHC.Loads.BaseClasses.Types.DistributionType.ChilledWater,
-
               have_pum=true,
               dp_nominal=100000,
               nPorts_a1=nZon,
               nPorts_b1=nZon) "Chilled water distribution system" annotation (
                 Placement(transformation(extent={{-198,-270},{-178,-250}})));
+
           equation
             connect(qRadGai_flow.y,multiplex3_1.u1[1])
               annotation (Line(points={{-39,154},{-26,154},{-26,121},{-22,121}},color={0,0,127},smooth=Smooth.None));
@@ -17933,24 +17987,23 @@ First implementation.
               m_flow_nominal=mHeaWat_flow_nominal,
               have_pum=true,
               typCtr=estcp.DHC.Loads.BaseClasses.Types.PumpControlType.ConstantHead,
-
               dp_nominal=100000,
               nPorts_a1=1,
               nPorts_b1=1) if have_heaWat "Heating water distribution system"
               annotation (Placement(transformation(extent={{120,-70},{140,-50}})));
+
             estcp.DHC.Loads.BaseClasses.FlowDistribution disFloCoo(
               redeclare final package Medium = Medium,
               final allowFlowReversal=allowFlowReversal,
               m_flow_nominal=mChiWat_flow_nominal,
               typDis=estcp.DHC.Loads.BaseClasses.Types.DistributionType.ChilledWater,
-
               have_pum=true,
               typCtr=estcp.DHC.Loads.BaseClasses.Types.PumpControlType.ConstantHead,
-
               dp_nominal=100000,
               nPorts_b1=1,
               nPorts_a1=1) if have_chiWat "Chilled water distribution system"
               annotation (Placement(transformation(extent={{120,-270},{140,-250}})));
+
             replaceable
               estcp.DHC.Loads.BaseClasses.Validation.BaseClasses.FanCoil2PipeCooling
               terUniCoo(
@@ -18044,27 +18097,34 @@ First implementation.
 
           equation
             connect(terUniHea.port_bHeaWat,disFloHea.ports_a1[1])
-              annotation (Line(points={{90,-20.3333},{90,-20},{146,-20},{146,-54},{140,
-                    -54}},                                                                   color={0,127,255}));
+              annotation (Line(points={{90,-20.3333},{90,-20},{146,-20},{146,
+                    -54},{140,-54}},                                                         color={0,127,255}));
             connect(disFloHea.ports_b1[1],terUniHea.port_aHeaWat)
-              annotation (Line(points={{120,-54},{64,-54},{64,-20.3333},{70,-20.3333}},color={0,127,255}));
+              annotation (Line(points={{120,-54},{64,-54},{64,-20.3333},{70,
+                    -20.3333}},                                                        color={0,127,255}));
             connect(terUniHea.mReqHeaWat_flow,disFloHea.mReq_flow[1])
-              annotation (Line(points={{90.8333,-15.3333},{100,-15.3333},{100,-64},{119,
-                    -64}},                                                                     color={0,0,127}));
+              annotation (Line(points={{90.8333,-15.3333},{100,-15.3333},{100,
+                    -64},{119,-64}},                                                           color={0,0,127}));
             connect(loa.y[1],terUniCoo.QReqCoo_flow)
               annotation (Line(points={{-259,0},{40,0},{40,42.5},{69.1667,42.5}}, color={0,0,127}));
             connect(loa.y[2],terUniHea.QReqHea_flow)
-              annotation (Line(points={{-259,0},{40,0},{40,-13.6667},{69.1667,-13.6667}}, color={0,0,127}));
+              annotation (Line(points={{-259,0},{40,0},{40,-13.6667},{69.1667,
+                    -13.6667}},                                                           color={0,0,127}));
             connect(disFloCoo.ports_b1[1],terUniCoo.port_aChiWat)
-              annotation (Line(points={{120,-254},{60,-254},{60,39.3333},{70,39.3333}},color={0,127,255}));
+              annotation (Line(points={{120,-254},{60,-254},{60,39.3333},{70,
+                    39.3333}},                                                         color={0,127,255}));
             connect(terUniCoo.port_bChiWat,disFloCoo.ports_a1[1])
-              annotation (Line(points={{90,39.3333},{160,39.3333},{160,-254},{140,-254}}, color={0,127,255}));
+              annotation (Line(points={{90,39.3333},{160,39.3333},{160,-254},{
+                    140,-254}},                                                           color={0,127,255}));
             connect(terUniCoo.mReqChiWat_flow,disFloCoo.mReq_flow[1])
-              annotation (Line(points={{90.8333,41},{108,41},{108,-264},{119,-264}},color={0,0,127}));
+              annotation (Line(points={{90.8333,41},{108,41},{108,-264},{119,
+                    -264}},                                                         color={0,0,127}));
             connect(minTSet.y,terUniHea.TSetHea)
-              annotation (Line(points={{-258,180},{-20,180},{-20,-7},{69.1667,-7}}, color={0,0,127}));
+              annotation (Line(points={{-258,180},{-20,180},{-20,-7},{69.1667,
+                    -7}},                                                           color={0,0,127}));
             connect(maxTSet.y,terUniCoo.TSetCoo)
-              annotation (Line(points={{-258,220},{0,220},{0,49.3333},{69.1667,49.3333}},color={0,0,127}));
+              annotation (Line(points={{-258,220},{0,220},{0,49.3333},{69.1667,
+                    49.3333}},                                                           color={0,0,127}));
             connect(disFloHea.PPum,addPPum.u1)
               annotation (Line(points={{141,-68},{170,-68},{170,86},{238,86}},color={0,0,127}));
             connect(disFloCoo.PPum,addPPum.u2)
@@ -18082,7 +18142,8 @@ First implementation.
             connect(terUniCoo.PFan,addPFan.u2)
               annotation (Line(points={{90.8333,46},{160,46},{160,114},{238,114}},color={0,0,127}));
             connect(terUniHea.PFan,addPFan.u1)
-              annotation (Line(points={{90.8333,-12},{180,-12},{180,126},{238,126}},color={0,0,127}));
+              annotation (Line(points={{90.8333,-12},{180,-12},{180,126},{238,
+                    126}},                                                          color={0,0,127}));
             connect(disFloCoo.port_b, mulChiWatOut[1].port_a)
               annotation (Line(points={{140,-260},{260,-260}}, color={0,127,255}));
             connect(disFloHea.port_b, mulHeaWatOut[1].port_a)
@@ -20770,7 +20831,6 @@ First implementation.
             m_flow_nominal=m_flow_nominal,
             have_pum=true,
             typCtr=estcp.DHC.Loads.BaseClasses.Types.PumpControlType.ConstantDp,
-
             dp_nominal=dp_nominal,
             dpDis_nominal=dpDis_nominal,
             dpMin=dpSet,
@@ -20779,6 +20839,7 @@ First implementation.
             nPorts_b1=nLoa)
             "Distribution system with pump controlled to track a pressure drop over the last connected unit"
             annotation (Placement(transformation(extent={{-10,-70},{10,-50}})));
+
           Buildings.Fluid.Sources.Boundary_pT sinHeaWat(
             redeclare package Medium = Medium1,
             p=300000,
@@ -20837,7 +20898,6 @@ First implementation.
             m_flow_nominal=m_flow_nominal,
             have_pum=true,
             typCtr=estcp.DHC.Loads.BaseClasses.Types.PumpControlType.ConstantSpeed,
-
             dp_nominal=dp_nominal,
             dpDis_nominal=dpDis_nominal,
             dpMin=dpSet,
@@ -20846,6 +20906,7 @@ First implementation.
             nPorts_b1=5)
             "Distribution system with pump controlled at constant speed"
             annotation (Placement(transformation(extent={{-10,70},{10,90}})));
+
           Buildings.Controls.OBC.CDL.Reals.Sources.Constant THeaWatSup(
             k=T_aHeaWat_nominal)
             "Heating water supply temperature"
@@ -21071,15 +21132,14 @@ First implementation.
             annotation (Placement(transformation(extent={{-10,90},{10,110}})));
           Buildings.BoundaryConditions.WeatherData.ReaderTMY3 weaDat(
             TDryBulSou=Buildings.BoundaryConditions.Types.DataSource.Parameter,
-
             TDryBul=276.15,
             calTSky=Buildings.BoundaryConditions.Types.SkyTemperatureCalculation.HorizontalRadiation,
-
             computeWetBulbTemperature=false,
             filNam=Modelica.Utilities.Files.loadResource(
                 "modelica://Buildings/Resources/weatherdata/USA_CA_San.Francisco.Intl.AP.724940_TMY3.mos"))
             "Weather data reader" annotation (Placement(transformation(extent={
                     {-140,90},{-120,110}})));
+
           Buildings.Controls.Continuous.LimPID conHea(
             controllerType=Modelica.Blocks.Types.SimpleController.PI,
             Ti=10)
@@ -21137,15 +21197,14 @@ First implementation.
             annotation (Placement(transformation(extent={{92,-90},{112,-70}})));
           Buildings.BoundaryConditions.WeatherData.ReaderTMY3 weaDat1(
             TDryBulSou=Buildings.BoundaryConditions.Types.DataSource.Parameter,
-
             TDryBul=293.15,
             calTSky=Buildings.BoundaryConditions.Types.SkyTemperatureCalculation.HorizontalRadiation,
-
             computeWetBulbTemperature=false,
             filNam=Modelica.Utilities.Files.loadResource(
                 "modelica://Buildings/Resources/weatherdata/USA_CA_San.Francisco.Intl.AP.724940_TMY3.mos"))
             "Weather data reader" annotation (Placement(transformation(extent={
                     {-140,-110},{-120,-90}})));
+
           estcp.DHC.Loads.BaseClasses.Examples.BaseClasses.GeojsonExportRC.OfficeBuilding.Office
             romCooMet "ROM where the cooling load is always met" annotation (
               Placement(transformation(extent={{-10,-130},{10,-110}})));
@@ -23151,8 +23210,8 @@ computed from the nominal fluid velocity in the original model).
               redeclare final package Medium = Medium,
               m_flow_nominal=m1_flow_nominal,
               dh=0.00548,
-              length=100) "Pipe 1 with standard hydraulic diameter" annotation
-              (Placement(transformation(extent={{-10,-30},{10,-10}})));
+              length=100) "Pipe 1 with standard hydraulic diameter" annotation (
+               Placement(transformation(extent={{-10,-30},{10,-10}})));
             Buildings.Fluid.Sources.MassFlowSource_T souSta1(
               redeclare final package Medium = Medium,
               m_flow=m1_flow_nominal,
@@ -23172,8 +23231,8 @@ computed from the nominal fluid velocity in the original model).
             Buildings.Fluid.Sources.MassFlowSource_T souAut1(
               redeclare final package Medium = Medium,
               m_flow=m1_flow_nominal,
-              nPorts=1) "Source of water flow for autosized pipe 1" annotation
-              (Placement(transformation(extent={{-60,50},{-40,70}})));
+              nPorts=1) "Source of water flow for autosized pipe 1" annotation (
+               Placement(transformation(extent={{-60,50},{-40,70}})));
             PipeAutosize pipAut1(
               redeclare final package Medium = Medium,
               m_flow_nominal=m1_flow_nominal,
@@ -24174,12 +24233,12 @@ First implementation.
         "Partial model for connecting an agent to a one-pipe distribution network"
         replaceable package Medium=Modelica.Media.Interfaces.PartialMedium
           "Medium model";
-        replaceable model Model_pipDis=
+        replaceable model Model_pipDis =
             Buildings.Fluid.Interfaces.PartialTwoPortInterface (
             redeclare final package Medium = Medium,
             final m_flow_nominal=mDis_flow_nominal,
             final allowFlowReversal=allowFlowReversal);
-        replaceable model Model_pipCon=
+        replaceable model Model_pipCon =
             Buildings.Fluid.Interfaces.PartialTwoPortInterface (
             redeclare final package Medium = Medium,
             final m_flow_nominal=mCon_flow_nominal,
@@ -24506,7 +24565,7 @@ First implementation.
             MediumRet = Medium);
         replaceable package Medium=Modelica.Media.Interfaces.PartialMedium
           "Medium model";
-        replaceable model Model_pipCon=
+        replaceable model Model_pipCon =
             Buildings.Fluid.Interfaces.PartialTwoPortInterface (
             redeclare final package Medium = Medium,
             final m_flow_nominal=mCon_flow_nominal,
@@ -24997,7 +25056,7 @@ First implementation.
       partial model PartialDistribution1Pipe
         "Partial model for one-pipe distribution network"
         extends PartialDistribution;
-        replaceable model Model_pipDis=
+        replaceable model Model_pipDis =
             Buildings.Fluid.Interfaces.PartialTwoPortInterface (redeclare
               final package Medium = Medium, final allowFlowReversal=
                 allowFlowReversal)
@@ -25252,7 +25311,7 @@ First implementation.
       partial model PartialDistribution2Pipe
         "Partial model for two-pipe distribution network"
         extends PartialDistribution;
-        replaceable model Model_pipDis=
+        replaceable model Model_pipDis =
             Buildings.Fluid.Interfaces.PartialTwoPortInterface (redeclare
               final package Medium = Medium, final allowFlowReversal=
                 allowFlowReversal)
@@ -26154,7 +26213,6 @@ This package contains models for elements that form the district network.
         Buildings.Fluid.Actuators.Valves.TwoWayLinear valChiWatMinByp(
           redeclare final package Medium = Medium,
           final m_flow_nominal=max(mChiWatChi_flow_min, mChiWatChiHea_flow_min),
-
           from_dp=true,
           linearized=true,
           dpValve_nominal=1E3,
@@ -26164,6 +26222,7 @@ This package contains models for elements that form the district network.
               extent={{-10,-10},{10,10}},
               rotation=-90,
               origin={240,140})));
+
         Buildings.Fluid.Sensors.RelativePressure dpChiWat(redeclare final
             package Medium = Medium)
           "CHW differential pressure (local sensor hardwired to plant controller)"
@@ -34097,8 +34156,8 @@ First implementation.
             each final use_inputFilter=use_inputFilter,
             each final riseTime=riseTime,
             each final init=init,
-            each final y_start=y_start) "Condenser isolation valve" annotation
-            (Placement(transformation(
+            each final y_start=y_start) "Condenser isolation valve" annotation (
+             Placement(transformation(
                 extent={{-10,-10},{10,10}},
                 rotation=90,
                 origin={20,80})));
@@ -34124,30 +34183,28 @@ First implementation.
             each final dp_nominal=fill(1E3, 3),
             each final energyDynamics=energyDynamics,
             each final portFlowDirection_1=Modelica.Fluid.Types.PortFlowDirection.Bidirectional,
-
             each final portFlowDirection_2=Modelica.Fluid.Types.PortFlowDirection.Bidirectional,
-
             each final portFlowDirection_3=if allowFlowReversal then Modelica.Fluid.Types.PortFlowDirection.Bidirectional
                  else Modelica.Fluid.Types.PortFlowDirection.Entering)
             "Fluid junction" annotation (Placement(transformation(
                 extent={{-10,-10},{10,10}},
                 rotation=90,
                 origin={-80,-60})));
+
           Buildings.Fluid.FixedResistances.Junction junConWatEvaInl[nUni](
             redeclare each final package Medium = Medium,
             each final m_flow_nominal=mChiWatUni_flow_nominal*{1,-1,-1},
             each final dp_nominal=fill(1E3, 3),
             each final energyDynamics=energyDynamics,
             each final portFlowDirection_1=Modelica.Fluid.Types.PortFlowDirection.Bidirectional,
-
             each final portFlowDirection_2=Modelica.Fluid.Types.PortFlowDirection.Bidirectional,
-
             each final portFlowDirection_3=if allowFlowReversal then Modelica.Fluid.Types.PortFlowDirection.Bidirectional
                  else Modelica.Fluid.Types.PortFlowDirection.Leaving)
             "Fluid junction" annotation (Placement(transformation(
                 extent={{-10,10},{10,-10}},
                 rotation=90,
                 origin={60,-6})));
+
           Buildings.Fluid.Sensors.TemperatureTwoPort temEvaLvg[nUni](
             redeclare each final package Medium = Medium,
             each final m_flow_nominal=mChiWatUni_flow_nominal,
@@ -34163,30 +34220,28 @@ First implementation.
             each final dp_nominal=fill(1E3, 3),
             each final energyDynamics=energyDynamics,
             each final portFlowDirection_1=Modelica.Fluid.Types.PortFlowDirection.Bidirectional,
-
             each final portFlowDirection_2=Modelica.Fluid.Types.PortFlowDirection.Bidirectional,
-
             each final portFlowDirection_3=if allowFlowReversal then Modelica.Fluid.Types.PortFlowDirection.Bidirectional
                  else Modelica.Fluid.Types.PortFlowDirection.Leaving)
             "Fluid junction" annotation (Placement(transformation(
                 extent={{-10,-10},{10,10}},
                 rotation=90,
                 origin={-60,60})));
+
           Buildings.Fluid.FixedResistances.Junction junHeaWatConOut[nUni](
             redeclare each final package Medium = Medium,
             each final m_flow_nominal=mConWatUni_flow_nominal*{1,-1,1},
             each final dp_nominal=fill(1E3, 3),
             each final energyDynamics=energyDynamics,
             each final portFlowDirection_1=Modelica.Fluid.Types.PortFlowDirection.Bidirectional,
-
             each final portFlowDirection_2=Modelica.Fluid.Types.PortFlowDirection.Bidirectional,
-
             each final portFlowDirection_3=if allowFlowReversal then Modelica.Fluid.Types.PortFlowDirection.Bidirectional
                  else Modelica.Fluid.Types.PortFlowDirection.Entering)
             "Fluid junction" annotation (Placement(transformation(
                 extent={{-10,10},{10,-10}},
                 rotation=90,
                 origin={80,60})));
+
           Buildings.Fluid.Sensors.TemperatureTwoPort temConEnt[nUni](
             redeclare each final package Medium = Medium,
             each final m_flow_nominal=mConWatUni_flow_nominal,
@@ -36207,9 +36262,7 @@ First implementation.
                 Q_flow=1E6,
                 P=dat.hea.Q_flow/2.2,
                 coeQ={-5.64420084,1.95212447,9.96663913,0.23316322,-5.64420084},
-
                 coeP={-3.96682255,6.8419453,1.99606939,0.01393387,-3.96682255},
-
                 TRefLoa=298.15,
                 TRefSou=253.15),
               coo(
@@ -36220,8 +36273,8 @@ First implementation.
                 coeQ=fill(0, 5),
                 coeP=fill(0, 5),
                 TRefLoa=273.15,
-                TRefSou=273.15)) "Heat pump parameters (each unit)" annotation
-              (Placement(transformation(extent={{90,92},{110,112}})));
+                TRefSou=273.15)) "Heat pump parameters (each unit)" annotation (
+               Placement(transformation(extent={{90,92},{110,112}})));
 
             estcp.DHC.Plants.Combined.Subsystems.HeatPumpGroup heaPum(
               redeclare final package Medium = MediumHeaWat,
@@ -36677,11 +36730,11 @@ First implementation.
                 Buildings.Fluid.Movers.BaseClasses.PartialFlowMachine(
                 redeclare final package Medium = Medium,
                 final energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
-
                 use_inputFilter=false,
                 final per=pum.per,
                 addPowerToMedium=false) "Pump" annotation (Placement(
                     transformation(extent={{-10,-50},{10,-30}})));
+
               Buildings.Fluid.FixedResistances.CheckValve cheVal1(
                 redeclare final package Medium = Medium,
                 final m_flow_nominal=mPum_flow_nominal,
@@ -45264,10 +45317,10 @@ district cooling system.
           each QHeaLoa=[0,0.8; 2,1; 10,1; 12,0.5; 20,0.5; 24,0.8]*[1,0; 0,
               QBui_flow_nominal],
           each smoothness=Modelica.Blocks.Types.Smoothness.MonotoneContinuousDerivative1,
-
           each timeScale(displayUnit="s") = 3600,
           each show_T=true) "Buildings"
           annotation (Placement(transformation(extent={{60,20},{40,40}})));
+
         estcp.DHC.Networks.Steam.DistributionCondensatePipe dis(
           redeclare final package MediumSup = MediumSte,
           redeclare final package MediumRet = MediumWat,
@@ -45819,6 +45872,16 @@ Buildings.Experimental.DHC</a>.
       annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
             coordinateSystem(preserveAspectRatio=false)));
     end test_chiller;
+
+    model loads
+      annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
+            coordinateSystem(preserveAspectRatio=false)));
+    end loads;
+
+    model pb_diff
+      annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
+            coordinateSystem(preserveAspectRatio=false)));
+    end pb_diff;
   end Tests;
   annotation (
     preferredView="info",
