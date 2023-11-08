@@ -4962,9 +4962,10 @@ Buildings.Experimental.DHC.EnergyTransferStations.Combined.Controls.WatersideEco
               annotation (Placement(transformation(extent={{-110,70},{-90,90}})));
           equation
             connect(senTInl.port_b,conWat.ports[1])
-              annotation (Line(points={{-20,20},{-30,20},{-30,0}},color={0,127,255}));
+              annotation (Line(points={{-20,20},{-30,20},{-30,-3}},
+                                                                  color={0,127,255}));
             connect(conWat.ports[2],senTOut.port_a)
-              annotation (Line(points={{-30,-4},{-30,-20},{-20,-20}},color={0,127,255}));
+              annotation (Line(points={{-30,-1},{-30,-20},{-20,-20}},color={0,127,255}));
             connect(senTInl.port_a,borFie.port_a)
               annotation (Line(points={{0,20},{20,20},{20,0},{40,0}},color={0,127,255}));
             connect(borFie.port_b,senTOut.port_b)
@@ -4972,11 +4973,13 @@ Buildings.Experimental.DHC.EnergyTransferStations.Combined.Controls.WatersideEco
             connect(TInlVal.y,conWat.T_in)
               annotation (Line(points={{-89,0},{-70,0},{-70,2},{-52,2}},color={0,0,127}));
             connect(zer.y,borFie.yValIso_actual[2])
-              annotation (Line(points={{-88,40},{30,40},{30,5},{38,5}},color={0,0,127}));
+              annotation (Line(points={{-88,40},{30,40},{30,4.5},{38,4.5}},
+                                                                       color={0,0,127}));
             connect(u.y,borFie.u)
               annotation (Line(points={{-88,80},{32,80},{32,8},{38,8}},color={0,0,127}));
             connect(u.y,borFie.yValIso_actual[1])
-              annotation (Line(points={{-88,80},{32,80},{32,3},{38,3}},color={0,0,127}));
+              annotation (Line(points={{-88,80},{32,80},{32,3.5},{38,3.5}},
+                                                                       color={0,0,127}));
             annotation (
               Diagram(
                 coordinateSystem(
@@ -5124,19 +5127,19 @@ Buildings.Experimental.DHC.EnergyTransferStations.Combined.Subsystems.Borefield<
             connect(chi.port_bHeaWat,senTHeaWatSup.port_a)
               annotation (Line(points={{-10,-56},{-40,-56},{-40,-40},{-70,-40}},color={0,127,255}));
             connect(senTHeaWatSup.port_b,conWat.ports[1])
-              annotation (Line(points={{-90,-40},{-100,-40},{-100,-60}},color={0,127,255}));
+              annotation (Line(points={{-90,-40},{-100,-40},{-100,-63}},color={0,127,255}));
             connect(evaWat.ports[1],senTChiWatSup.port_b)
-              annotation (Line(points={{100,-60},{100,-40},{80,-40}},color={0,127,255}));
+              annotation (Line(points={{100,-63},{100,-40},{80,-40}},color={0,127,255}));
             connect(senTChiWatSup.port_a,chi.port_bChiWat)
               annotation (Line(points={{60,-40},{40,-40},{40,-56},{10,-56}},color={0,127,255}));
             connect(conWat.ports[2],senTHeaWatRet.port_a)
-              annotation (Line(points={{-100,-64},{-100,-80},{-90,-80}},color={0,127,255}));
+              annotation (Line(points={{-100,-61},{-100,-80},{-90,-80}},color={0,127,255}));
             connect(senTHeaWatRet.port_b,chi.port_aHeaWat)
               annotation (Line(points={{-70,-80},{-40,-80},{-40,-68},{-10,-68}},color={0,127,255}));
             connect(chi.port_aChiWat,senTChiWatRet.port_b)
               annotation (Line(points={{10,-68},{40,-68},{40,-80},{60,-80}},color={0,127,255}));
             connect(senTChiWatRet.port_a,evaWat.ports[2])
-              annotation (Line(points={{80,-80},{100,-80},{100,-64}},color={0,127,255}));
+              annotation (Line(points={{80,-80},{100,-80},{100,-61}},color={0,127,255}));
             connect(uCoo.y,chi.uCoo)
               annotation (Line(points={{-99,80},{-24,80},{-24,-60},{-12,-60}},color={255,0,255}));
             connect(uHea.y,chi.uHea)
@@ -5382,18 +5385,21 @@ Buildings.Experimental.DHC.EnergyTransferStations.Combined.Subsystems.Chiller</a
             connect(hexPum.port_b1,senT1OutPum.port_a)
               annotation (Line(points={{50,-74},{80,-74},{80,-100},{100,-100}},
                                                                             color={0,127,255}));
-            connect(senT1OutPum.port_b, bou1Pum.ports[1]) annotation (Line(points={{120,-100},
-                    {140,-100},{140,-80}}, color={0,127,255}));
+            connect(senT1OutPum.port_b, bou1Pum.ports[1]) annotation (Line(points={{120,
+                    -100},{140,-100},{140,-83}},
+                                           color={0,127,255}));
             connect(hexPum.port_a1,senT1InlPum.port_b)
               annotation (Line(points={{30,-74},{20,-74},{20,-60},{100,-60}},  color={0,127,255}));
             connect(senT1InlPum.port_a, bou1Pum.ports[2]) annotation (Line(points={{120,-60},
-                    {140,-60},{140,-84}}, color={0,127,255}));
+                    {140,-60},{140,-81}}, color={0,127,255}));
             connect(hexPum.port_b2,senT2OutPum.port_a)
               annotation (Line(points={{30,-86},{0,-86},{0,-60},{-20,-60}},     color={0,127,255}));
             connect(senT2OutPum.port_b, bou2.ports[1]) annotation (Line(points={{-40,-60},
-                    {-50,-60},{-50,-24},{-60,-24},{-60,-17}}, color={0,127,255}));
-            connect(bou2.ports[2], senT2InlPum.port_a) annotation (Line(points={{-60,-19},
-                    {-60,-100},{-40,-100}}, color={0,127,255}));
+                    {-50,-60},{-50,-24},{-60,-24},{-60,-21.5}},
+                                                              color={0,127,255}));
+            connect(bou2.ports[2], senT2InlPum.port_a) annotation (Line(points={{-60,
+                    -20.5},{-60,-100},{-40,-100}},
+                                            color={0,127,255}));
             connect(senT2InlPum.port_b,hexPum.port_a2)
               annotation (Line(points={{-20,-100},{60,-100},{60,-86},{50,-86}},
                                                                              color={0,127,255}));
@@ -5416,13 +5422,13 @@ Buildings.Experimental.DHC.EnergyTransferStations.Combined.Subsystems.Chiller</a
             connect(uHeaRej.y,or2.u1)
               annotation (Line(points={{-169,100},{-130,100},{-130,80},{-122,80}},  color={255,0,255}));
             connect(yValIsoCon.y,hexVal.yValIso_actual[1])
-              annotation (Line(points={{-169,60},{8,60},{8,-3},{28,-3}},     color={0,0,127}));
+              annotation (Line(points={{-169,60},{8,60},{8,-2.5},{28,-2.5}}, color={0,0,127}));
             connect(yValIsoCon.y,hexPum.yValIso_actual[1])
-              annotation (Line(points={{-169,60},{8,60},{8,-83},{28,-83}},     color={0,0,127}));
+              annotation (Line(points={{-169,60},{8,60},{8,-82.5},{28,-82.5}}, color={0,0,127}));
             connect(yValIsoEva.y,hexVal.yValIso_actual[2])
-              annotation (Line(points={{-169,40},{4,40},{4,-1},{28,-1}},     color={0,0,127}));
+              annotation (Line(points={{-169,40},{4,40},{4,-1.5},{28,-1.5}}, color={0,0,127}));
             connect(yValIsoEva.y,hexPum.yValIso_actual[2])
-              annotation (Line(points={{-169,40},{4,40},{4,-81},{28,-81}},     color={0,0,127}));
+              annotation (Line(points={{-169,40},{4,40},{4,-81.5},{28,-81.5}}, color={0,0,127}));
             connect(or2.y,swi1.u2)
               annotation (Line(points={{-98,80},{-22,80}},   color={255,0,255}));
             connect(sin1.y,swi1.u1)
@@ -5443,9 +5449,11 @@ Buildings.Experimental.DHC.EnergyTransferStations.Combined.Subsystems.Chiller</a
             connect(TSerWat.y, bou1InlVal.T_in) annotation (Line(points={{189,-80},{180,-80},
                     {180,24},{164,24}}, color={0,0,127}));
             connect(senT2OutVal.port_b, bou2.ports[3])
-              annotation (Line(points={{-40,20},{-60,20},{-60,-21}}, color={0,127,255}));
-            connect(bou2.ports[4], senT2InlVal.port_a) annotation (Line(points={{-60,-23},
-                    {-60,-20},{-40,-20}}, color={0,127,255}));
+              annotation (Line(points={{-40,20},{-60,20},{-60,-19.5}},
+                                                                     color={0,127,255}));
+            connect(bou2.ports[4], senT2InlVal.port_a) annotation (Line(points={{-60,
+                    -18.5},{-60,-20},{-40,-20}},
+                                          color={0,127,255}));
             annotation (
               Diagram(
                 coordinateSystem(
@@ -5546,25 +5554,27 @@ primary flow rate is modulated by means of a variable speed pump
                   m_flow_nominal) "Scale with nominal mass flow rate"
               annotation (Placement(transformation(extent={{-46,30},{-26,50}})));
           equation
-            connect(pum1.port_b, volSup.ports[1]) annotation (Line(points={{-10,0},{-60,0},
-                    {-60,-2.66667}}, color={0,127,255}));
+            connect(pum1.port_b, volSup.ports[1]) annotation (Line(points={{-10,0},
+                    {-60,0},{-60,-1.33333}},
+                                     color={0,127,255}));
             connect(volSup.ports[2], pum2.port_a) annotation (Line(points={{-60,-4.44089e-16},
                     {-60,60},{-10,60}}, color={0,127,255}));
-            connect(pum2.port_b, volRet.ports[1]) annotation (Line(points={{10,60},{60,60},
-                    {60,-2.66667}}, color={0,127,255}));
+            connect(pum2.port_b, volRet.ports[1]) annotation (Line(points={{10,60},
+                    {60,60},{60,-1.33333}},
+                                    color={0,127,255}));
             connect(volRet.ports[2], pum1.port_a) annotation (Line(points={{60,8.88178e-16},
                     {60,0},{10,0}}, color={0,127,255}));
             connect(floSwiBox.port_bSup, volSup.ports[3]) annotation (Line(points={{-6,-40},
-                    {-6,-20},{-60,-20},{-60,2.66667}}, color={0,127,255}));
+                    {-6,-20},{-60,-20},{-60,1.33333}}, color={0,127,255}));
             connect(floSwiBox.port_aRet, volRet.ports[3]) annotation (Line(points={{6,-40},
-                    {6,-20},{60,-20},{60,2.66667}}, color={0,127,255}));
+                    {6,-20},{60,-20},{60,1.33333}}, color={0,127,255}));
             connect(floSwiBox.port_bRet, senMasFlo.port_a) annotation (Line(points={{6,-60},
                     {6,-80},{60,-80},{60,-100},{10,-100}},
                                                  color={0,127,255}));
             connect(senMasFlo.port_b, disWatBou.ports[1]) annotation (Line(points={{-10,
-                    -100},{-60,-100},{-60,-88}},
+                    -100},{-60,-100},{-60,-91}},
                                                color={0,127,255}));
-            connect(disWatBou.ports[2], floSwiBox.port_aSup) annotation (Line(points={{-60,-92},
+            connect(disWatBou.ports[2], floSwiBox.port_aSup) annotation (Line(points={{-60,-89},
                     {-60,-80},{-6,-80},{-6,-60}},
                                               color={0,127,255}));
             connect(pum1.m_flow_actual, floSwiBox.mRev_flow) annotation (Line(points={{-11,
@@ -5790,11 +5800,11 @@ period set by the controller.
             connect(hexPum.port_b1,senT1OutPum.port_a)
               annotation (Line(points={{40,-54},{70,-54},{70,-80},{90,-80}},color={0,127,255}));
             connect(senT1OutPum.port_b, bou1Pum.ports[1]) annotation (Line(points={{110,-80},
-                    {130,-80},{130,-60}}, color={0,127,255}));
+                    {130,-80},{130,-63}}, color={0,127,255}));
             connect(hexPum.port_a1,senT1InlPum.port_b)
               annotation (Line(points={{20,-54},{10,-54},{10,-40},{90,-40}},   color={0,127,255}));
             connect(senT1InlPum.port_a, bou1Pum.ports[2]) annotation (Line(points={{110,-40},
-                    {130,-40},{130,-64}}, color={0,127,255}));
+                    {130,-40},{130,-61}}, color={0,127,255}));
             connect(hexPum.port_b2,senT2OutPum.port_a)
               annotation (Line(points={{20,-66},{-10,-66},{-10,-40},{-30,-40}}, color={0,127,255}));
             connect(senT2InlPum.port_b,hexPum.port_a2)
@@ -5821,8 +5831,9 @@ period set by the controller.
                     {170,44},{152,44}}, color={0,0,127}));
             connect(uCoo.y, hexVal.uCoo) annotation (Line(points={{-179,80},{0,80},{0,20},{18,20}},      color={255,0,255}));
             connect(uCoo.y, hexPum.uCoo) annotation (Line(points={{-179,80},{0,80},{0,-60},{18,-60}},      color={255,0,255}));
-            connect(bou2.ports[1], senT2InlVal.port_a) annotation (Line(points={{-140,3},
-                    {-120,3},{-120,0},{-50,0}}, color={0,127,255}));
+            connect(bou2.ports[1], senT2InlVal.port_a) annotation (Line(points={{-140,
+                    -1.5},{-120,-1.5},{-120,0},{-50,0}},
+                                                color={0,127,255}));
             connect(TChiWatRet.y, bou2.T_in) annotation (Line(points={{-179,20},{-172,20},
                     {-172,4},{-162,4}}, color={0,0,127}));
             connect(pum2Pum.port_a, senT2OutPum.port_b)
@@ -5837,17 +5848,19 @@ period set by the controller.
               annotation (Line(points={{-80,40},{-100,40}}, color={0,127,255}));
             connect(dpSet.y, pum2Val.dp_in) annotation (Line(points={{-178,-30},{-90,-30},
                     {-90,60},{-70,60},{-70,52}}, color={0,0,127}));
-            connect(resVal.port_b, bou2.ports[2]) annotation (Line(points={{-120,40},{
-                    -140,40},{-140,1}}, color={0,127,255}));
+            connect(resVal.port_b, bou2.ports[2]) annotation (Line(points={{-120,40},
+                    {-140,40},{-140,-0.5}},
+                                        color={0,127,255}));
             connect(yEva.y, hexVal.yValIsoEva_actual) annotation (Line(points={{-179,60},
                     {-6,60},{-6,17},{18,17}}, color={0,0,127}));
             connect(yEva.y, hexPum.yValIsoEva_actual) annotation (Line(points={{-179,60},
                     {-6.07143,60},{-6.07143,17.1429},{-6,17.1429},{-6,-63},{18,-63}},
                   color={0,0,127}));
-            connect(bou2.ports[3], resPum.port_b) annotation (Line(points={{-140,-1},{
-                    -140,-2},{-130,-2},{-130,-40},{-120,-40}}, color={0,127,255}));
+            connect(bou2.ports[3], resPum.port_b) annotation (Line(points={{-140,
+                    0.5},{-140,-2},{-130,-2},{-130,-40},{-120,-40}},
+                                                               color={0,127,255}));
             connect(senT2InlPum.port_a, bou2.ports[4]) annotation (Line(points={{-50,-80},
-                    {-140,-80},{-140,-3}}, color={0,127,255}));
+                    {-140,-80},{-140,1.5}},color={0,127,255}));
             annotation (
               Diagram(
                 coordinateSystem(
@@ -5889,6 +5902,364 @@ Buildings.Experimental.DHC.EnergyTransferStations.Combined.Subsystems</a>.
 </p>
 </html>"));
         end Validation;
+
+        model Chiller_carnot "Base subsystem with heat recovery chiller"
+          replaceable package Medium=Modelica.Media.Interfaces.PartialMedium
+            "Medium model"
+            annotation (choices(choice(redeclare package Medium =
+                    Buildings.Media.Water                                             "Water"),
+            choice(redeclare package Medium =
+                    Buildings.Media.Antifreeze.PropyleneGlycolWater (property_T=293.15,X_a=0.40)
+            "Propylene glycol water, 40% mass fraction")));
+          parameter Boolean allowFlowReversal=false
+            "= true to allow flow reversal, false restricts to design direction (port_a -> port_b)"
+            annotation (Dialog(tab="Assumptions"),Evaluate=true);
+          replaceable parameter Buildings.Fluid.Movers.Data.Generic perPumCon(
+            motorCooledByFluid=false)
+            constrainedby Buildings.Fluid.Movers.Data.Generic
+            "Record with performance data for condenser pump"
+            annotation (choicesAllMatching=true,Placement(transformation(extent={{100,160},{120,180}})));
+          replaceable parameter Buildings.Fluid.Movers.Data.Generic perPumEva(
+            motorCooledByFluid=false)
+            constrainedby Buildings.Fluid.Movers.Data.Generic
+            "Record with performance data for evaporator pump"
+            annotation (choicesAllMatching=true,Placement(transformation(extent={{140,160},{160,180}})));
+          parameter Modelica.Units.SI.PressureDifference dpCon_nominal(displayUnit="Pa")
+            "Nominal pressure drop accross condenser"
+            annotation (Dialog(group="Nominal condition"));
+          parameter Modelica.Units.SI.PressureDifference dpEva_nominal(displayUnit="Pa")
+            "Nominal pressure drop accross evaporator"
+            annotation (Dialog(group="Nominal condition"));
+          parameter Modelica.Units.SI.Pressure dpValCon_nominal=dpCon_nominal/2
+            "Nominal pressure drop accross control valve on condenser side"
+            annotation (Dialog(group="Nominal condition"));
+          parameter Modelica.Units.SI.Pressure dpValEva_nominal=dpEva_nominal/2
+            "Nominal pressure drop accross control valve on evaporator side"
+            annotation (Dialog(group="Nominal condition"));
+          parameter Modelica.Units.SI.Temperature TConWatEntMin(displayUnit="degC")=
+            dat.TConEntMin "Minimum value of condenser water entering temperature"
+            annotation (Dialog(group="Controls"));
+          parameter Modelica.Units.SI.Temperature TEvaWatEntMax(displayUnit="degC")=
+            dat.TEvaLvgMax - dat.QEva_flow_nominal/cp_default/dat.mEva_flow_nominal
+            "Maximum value of evaporator water entering temperature"
+            annotation (Dialog(group="Controls"));
+          // IO CONNECTORS
+          Buildings.Controls.OBC.CDL.Interfaces.BooleanInput uHea
+            "Heating enable signal"
+            annotation (Placement(transformation(extent={{-240,168},{-200,208}}),
+            iconTransformation(extent={{-140,20},{-100,60}})));
+          Buildings.Controls.OBC.CDL.Interfaces.BooleanInput uCoo
+            "Cooling enable signal"
+            annotation (Placement(transformation(extent={{-240,148},{-200,188}}),
+            iconTransformation(extent={{-140,0},{-100,40}})));
+          Buildings.Controls.OBC.CDL.Interfaces.RealInput TChiWatSupSet(
+            final unit="K",
+            displayUnit="degC")
+            "Chilled water supply temperature set point (may be reset down)"
+            annotation (Placement(transformation(extent={{-240,120},{-200,160}}),
+            iconTransformation(extent={{-140,-40},{-100,0}})));
+          Modelica.Fluid.Interfaces.FluidPort_a port_aChiWat(
+            redeclare final package Medium=Medium,
+            m_flow(
+              min=
+                if allowFlowReversal then
+                  -Modelica.Constants.inf
+                else
+                  0),
+            h_outflow(
+              start=Medium.h_default,
+              nominal=Medium.h_default))
+            "Fluid port for chilled water return"
+            annotation (Placement(transformation(extent={{190,-70},{210,-50}}),
+            iconTransformation(extent={{90,-70},{110,-50}})));
+          Modelica.Fluid.Interfaces.FluidPort_b port_bChiWat(
+            redeclare final package Medium=Medium,
+            m_flow(
+              max=
+                if allowFlowReversal then
+                  +Modelica.Constants.inf
+                else
+                  0),
+            h_outflow(
+              start=Medium.h_default,
+              nominal=Medium.h_default))
+            "Fluid port for chilled water supply"
+            annotation (Placement(transformation(extent={{190,50},{210,70}}),
+            iconTransformation(extent={{90,50},{110,70}})));
+          Modelica.Fluid.Interfaces.FluidPort_a port_aHeaWat(
+            redeclare final package Medium=Medium,
+            m_flow(
+              min=
+                if allowFlowReversal then
+                  -Modelica.Constants.inf
+                else
+                  0),
+            h_outflow(
+              start=Medium.h_default,
+              nominal=Medium.h_default))
+            "Fluid port for heating water return"
+            annotation (Placement(transformation(extent={{-210,-70},{-190,-50}}),
+            iconTransformation(extent={{-110,-70},{-90,-50}})));
+          Modelica.Fluid.Interfaces.FluidPort_b port_bHeaWat(
+            redeclare final package Medium=Medium,
+            m_flow(
+              max=
+                if allowFlowReversal then
+                  +Modelica.Constants.inf
+                else
+                  0),
+            h_outflow(
+              start=Medium.h_default,
+              nominal=Medium.h_default))
+            "Fluid port for heating water supply"
+            annotation (Placement(transformation(extent={{-210,50},{-190,70}}),
+            iconTransformation(extent={{-110,50},{-90,70}})));
+          Buildings.Controls.OBC.CDL.Interfaces.RealOutput PChi(
+            final unit="W")
+            "Chiller power"
+            annotation (Placement(transformation(extent={{200,-20},{240,20}}),
+            iconTransformation(extent={{100,0},{140,40}})));
+          Buildings.Controls.OBC.CDL.Interfaces.RealOutput PPum(
+            final unit="W")
+            "Pump power"
+            annotation (Placement(transformation(extent={{200,-160},{240,-120}}),
+            iconTransformation(extent={{100,-40},{140,0}})));
+          // COMPONENTS
+          Buildings.Fluid.Chillers.Carnot_TEva chi(
+            redeclare final package Medium1 = Medium,
+            redeclare final package Medium2 = Medium,
+            final allowFlowReversal1=allowFlowReversal,
+            final allowFlowReversal2=allowFlowReversal,
+            QEva_flow_nominal=-300,
+            final dp1_nominal=0,
+            final dp2_nominal=0,
+            energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial)
+            "Water cooled chiller (ports indexed 1 are on condenser side)"
+            annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
+          estcp.DHC.EnergyTransferStations.BaseClasses.Pump_m_flow pumCon(
+            redeclare final package Medium = Medium,
+            final per=perPumCon,
+            final allowFlowReversal=allowFlowReversal,
+            final m_flow_nominal=dat.mCon_flow_nominal,
+            final dp_nominal=dpCon_nominal + dpValCon_nominal) "Condenser pump"
+            annotation (Placement(transformation(extent={{-110,50},{-90,70}})));
+          estcp.DHC.EnergyTransferStations.BaseClasses.Pump_m_flow pumEva(
+            redeclare final package Medium = Medium,
+            final per=perPumEva,
+            final allowFlowReversal=allowFlowReversal,
+            final m_flow_nominal=dat.mEva_flow_nominal,
+            final dp_nominal=dpEva_nominal + dpValEva_nominal)
+            "Evaporator pump" annotation (Placement(transformation(
+                extent={{10,-10},{-10,10}},
+                rotation=0,
+                origin={-100,-60})));
+          estcp.DHC.EnergyTransferStations.Combined.Controls.Chiller con(final
+              TConWatEntMin=TConWatEntMin, final TEvaWatEntMax=TEvaWatEntMax)
+            "Controller" annotation (Placement(transformation(extent={{-70,130},
+                    {-50,150}})));
+          Buildings.Fluid.Sensors.TemperatureTwoPort senTConLvg(
+            redeclare final package Medium=Medium,
+            final allowFlowReversal=allowFlowReversal,
+            final m_flow_nominal=dat.mCon_flow_nominal)
+            "Condenser water leaving temperature"
+            annotation (Placement(transformation(extent={{10,10},{-10,-10}},rotation=270,origin={20,20})));
+          Buildings.Fluid.Sensors.TemperatureTwoPort senTConEnt(
+            redeclare final package Medium=Medium,
+            final allowFlowReversal=allowFlowReversal,
+            final m_flow_nominal=dat.mCon_flow_nominal)
+            "Condenser water entering temperature"
+            annotation (Placement(transformation(extent={{-10,10},{10,-10}},rotation=-90,origin={-20,40})));
+          Buildings.Fluid.Sensors.TemperatureTwoPort senTEvaEnt(
+            redeclare final package Medium=Medium,
+            final allowFlowReversal=allowFlowReversal,
+            final m_flow_nominal=dat.mEva_flow_nominal)
+            "Evaporator water entering temperature"
+            annotation (Placement(transformation(extent={{10,10},{-10,-10}},rotation=270,origin={20,-40})));
+          Buildings.Fluid.Sensors.TemperatureTwoPort senTEvaLvg(
+            redeclare final package Medium=Medium,
+            final allowFlowReversal=allowFlowReversal,
+            final m_flow_nominal=dat.mEva_flow_nominal)
+            "Evaporator water leaving temperature"
+            annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=90,origin={-20,-20})));
+          estcp.DHC.EnergyTransferStations.BaseClasses.Junction splEva(
+              redeclare final package Medium = Medium, final m_flow_nominal=dat.mEva_flow_nominal
+                 .* {1,-1,-1}) "Flow splitter for the evaporator water circuit"
+            annotation (Placement(transformation(
+                extent={{10,-10},{-10,10}},
+                rotation=0,
+                origin={-140,-60})));
+          estcp.DHC.EnergyTransferStations.BaseClasses.Junction splConMix(
+              redeclare final package Medium = Medium, final m_flow_nominal=dat.mCon_flow_nominal
+                 .* {1,-1,-1}) "Flow splitter" annotation (Placement(
+                transformation(
+                extent={{-10,10},{10,-10}},
+                rotation=0,
+                origin={120,60})));
+          Buildings.Fluid.Actuators.Valves.ThreeWayEqualPercentageLinear valEva(
+            redeclare final package Medium = Medium,
+            energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+            from_dp=false,
+            use_inputFilter=false,
+            final m_flow_nominal=dat.mEva_flow_nominal,
+            final dpValve_nominal=dpValEva_nominal,
+            final dpFixed_nominal=fill(dpEva_nominal, 2))
+            "Control valve for maximum evaporator water entering temperature"
+            annotation (Placement(transformation(
+                extent={{-10,10},{10,-10}},
+                rotation=180,
+                origin={120,-60})));
+          Buildings.Fluid.Actuators.Valves.ThreeWayEqualPercentageLinear valCon(
+            redeclare final package Medium = Medium,
+            energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+            from_dp=false,
+            use_inputFilter=false,
+            final m_flow_nominal=dat.mCon_flow_nominal,
+            final dpValve_nominal=dpValCon_nominal,
+            final dpFixed_nominal=fill(dpCon_nominal, 2))
+            "Control valve for minimum condenser water entering temperature"
+            annotation (Placement(transformation(
+                extent={{-10,10},{10,-10}},
+                rotation=0,
+                origin={-140,60})));
+          Buildings.Controls.OBC.CDL.Conversions.BooleanToReal booToRea
+            "Constant speed primary pumps control signal"
+            annotation (Placement(transformation(extent={{-60,170},{-80,190}})));
+          Buildings.Controls.OBC.CDL.Reals.Add add2
+            annotation (Placement(transformation(extent={{160,-150},{180,-130}})));
+          Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter gai1(final k=dat.mCon_flow_nominal)
+            "Scale to nominal mass flow rate" annotation (Placement(transformation(
+                extent={{10,-10},{-10,10}},
+                rotation=90,
+                origin={-100,114})));
+          Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter gai2(final k=dat.mEva_flow_nominal)
+            "Scale to nominal mass flow rate" annotation (Placement(transformation(
+                extent={{-10,-10},{10,10}},
+                rotation=-90,
+                origin={-100,-22})));
+        protected
+          final parameter Medium.ThermodynamicState sta_default=Medium.setState_pTX(
+            T=Medium.T_default,
+            p=Medium.p_default,
+            X=Medium.X_default[1:Medium.nXi])
+            "Medium state at default properties";
+          final parameter Modelica.Units.SI.SpecificHeatCapacity cp_default=
+              Medium.specificHeatCapacityCp(sta_default)
+            "Specific heat capacity of the fluid";
+        equation
+          connect(splConMix.port_3,valCon.port_3)
+            annotation (Line(points={{120,70},{120,80},{-140,80},{-140,70}},color={0,127,255}));
+          connect(valCon.port_2,pumCon.port_a)
+            annotation (Line(points={{-130,60},{-110,60}},color={0,127,255}));
+          connect(pumEva.port_b,splEva.port_1)
+            annotation (Line(points={{-110,-60},{-130,-60}},color={0,127,255}));
+          connect(splEva.port_3,valEva.port_3)
+            annotation (Line(points={{-140,-70},{-140,-80},{120,-80},{120,-70}},color={0,127,255}));
+          connect(con.yValEva,valEva.y)
+            annotation (Line(points={{-48,137},{-32,137},{-32,120},{160,120},{160,-40},{
+                  120,-40},{120,-48}},                                                                      color={0,0,127}));
+          connect(con.yValCon,valCon.y)
+            annotation (Line(points={{-48,133},{-44,133},{-44,90},{-160,90},{-160,40},{-140,
+                  40},{-140,48}},                                                                          color={0,0,127}));
+          connect(uHea,con.uHea)
+            annotation (Line(points={{-220,188},{-180,188},{-180,147},{-72,147}},color={255,0,255}));
+          connect(uCoo,con.uCoo)
+            annotation (Line(points={{-220,168},{-186,168},{-186,143},{-72,143}},color={255,0,255}));
+          connect(senTConEnt.T,con.TConWatEnt)
+            annotation (Line(points={{-31,40},{-78,40},{-78,133},{-72,133}},color={0,0,127}));
+          connect(senTEvaEnt.T,con.TEvaWatEnt)
+            annotation (Line(points={{9,-40},{-80,-40},{-80,137},{-72,137}},color={0,0,127}));
+          connect(splConMix.port_2,port_bHeaWat)
+            annotation (Line(points={{130,60},{140,60},{140,100},{-180,100},{-180,60},{-200,60}},color={0,127,255}));
+          connect(splEva.port_2,port_bChiWat)
+            annotation (Line(points={{-150,-60},{-160,-60},{-160,-100},{180,-100},{180,60},{200,60}},color={0,127,255}));
+          connect(port_aHeaWat,valCon.port_1)
+            annotation (Line(points={{-200,-60},{-170,-60},{-170,60},{-150,60}},color={0,127,255}));
+          connect(port_aChiWat,valEva.port_1)
+            annotation (Line(points={{200,-60},{130,-60}},color={0,127,255}));
+          connect(valEva.port_2,senTEvaEnt.port_a)
+            annotation (Line(points={{110,-60},{20,-60},{20,-50}},color={0,127,255}));
+          connect(senTEvaLvg.port_b,pumEva.port_a)
+            annotation (Line(points={{-20,-30},{-20,-60},{-90,-60}},color={0,127,255}));
+          connect(senTEvaLvg.port_a,chi.port_b2)
+            annotation (Line(points={{-20,-10},{-20,-6},{-10,-6}},color={0,127,255}));
+          connect(senTEvaEnt.port_b,chi.port_a2)
+            annotation (Line(points={{20,-30},{20,-6},{10,-6}},color={0,127,255}));
+          connect(chi.port_b1,senTConLvg.port_a)
+            annotation (Line(points={{10,6},{20,6},{20,10}},color={0,127,255}));
+          connect(senTConLvg.port_b,splConMix.port_1)
+            annotation (Line(points={{20,30},{20,60},{110,60}},color={0,127,255}));
+          connect(pumCon.port_b,senTConEnt.port_a)
+            annotation (Line(points={{-90,60},{-20,60},{-20,50}},color={0,127,255}));
+          connect(senTConEnt.port_b,chi.port_a1)
+            annotation (Line(points={{-20,30},{-20,6},{-10,6}},color={0,127,255}));
+          connect(chi.P,PChi)
+            annotation (Line(points={{11,0},{14,0},{14,0},{220,0}},color={0,0,127}));
+          connect(add2.y,PPum)
+            annotation (Line(points={{182,-140},{220,-140}},color={0,0,127}));
+          connect(pumEva.P,add2.u2)
+            annotation (Line(points={{-111,-51},{-120,-51},{-120,-140},{140,-140},{140,-146},{158,-146}},color={0,0,127}));
+          connect(pumCon.P,add2.u1)
+            annotation (Line(points={{-89,69},{-60,69},{-60,-134},{158,-134}},color={0,0,127}));
+          connect(con.yChi,booToRea.u)
+            annotation (Line(points={{-48,146},{-36,146},{-36,180},{-58,180}},color={255,0,255}));
+          connect(booToRea.y,gai2.u)
+            annotation (Line(points={{-82,180},{-120,180},{-120,0},{-100,0},{-100,-10}},color={0,0,127}));
+          connect(gai2.y,pumEva.m_flow_in)
+            annotation (Line(points={{-100,-34},{-100,-48}},color={0,0,127}));
+          connect(gai1.y,pumCon.m_flow_in)
+            annotation (Line(points={{-100,102},{-100,72}},color={0,0,127}));
+          connect(booToRea.y,gai1.u)
+            annotation (Line(points={{-82,180},{-100,180},{-100,126}},color={0,0,127}));
+          connect(TChiWatSupSet,chi.TSet)
+            annotation (Line(points={{-220,140},{-188,140},{-188,9},{-12,9}},  color={0,0,127}));
+          annotation (
+            defaultComponentName="chi",
+            Icon(
+              graphics={
+                Rectangle(
+                  extent={{-100,-100},{100,100}},
+                  lineColor={0,0,127},
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid),
+                Rectangle(
+                  extent={{-60,60},{60,-60}},
+                  lineColor={27,0,55},
+                  fillColor={170,213,255},
+                  fillPattern=FillPattern.Solid),
+                Text(
+                  extent={{-149,-110},{151,-150}},
+                  textColor={0,0,255},
+                  textString="%name")}),
+            Diagram(
+              coordinateSystem(
+                extent={{-200,-200},{200,200}})),
+            Documentation(
+              revisions="<html>
+<ul>
+<li>
+July 31, 2020, by Antoine Gautier:<br/>
+First implementation.
+</li>
+</ul>
+</html>",     info="<html>
+<p>
+This is a model for a chiller system with constant speed evaporator and
+condenser pumps, and mixing valves modulated to maintain a minimum
+condenser inlet temperature (resp. maximum evaporator inlet temperature).
+</p>
+<p>
+The system is controlled based on the logic described in
+<a href=\"modelica://Buildings.Experimental.DHC.EnergyTransferStations.Combined.Controls.Chiller\">
+Buildings.Experimental.DHC.EnergyTransferStations.Combined.Controls.Chiller</a>.
+The pump flow rate is considered proportional to the pump speed
+under the assumption of a constant flow resistance for both the condenser
+and the evaporator loops. This assumption is justified
+by the connection of the loops to the buffer tanks, and the additional
+assumption that the bypass branch of the mixing valves is balanced
+with the direct branch.
+</p>
+</html>"));
+        end Chiller_carnot;
         annotation (
           preferredView="info",
           Documentation(
@@ -10371,7 +10742,6 @@ First implementation.
             T_bHeaWat_nominal=THeaWatSup_nominal - 5,
             T_aChiWat_nominal=TChiWatSup_nominal,
             T_bChiWat_nominal=TChiWatSup_nominal + 5), ets(
-            have_hotWat=true,
             QChiWat_flow_nominal=QCoo_flow_nominal,
             QHeaWat_flow_nominal=QHea_flow_nominal,
             QHotWat_flow_nominal=QHot_flow_nominal));
@@ -44580,8 +44950,8 @@ Added documentation.
           "Scale with nominal mass flow rate"
           annotation (Placement(transformation(extent={{-240,-70},{-220,-50}})));
       equation
-        connect(masFloDisPla.y, pla.mPum_flow) annotation (Line(points={{-229,20},{
-                -184,20},{-184,4.66667},{-161.333,4.66667}},
+        connect(masFloDisPla.y, pla.mPum_flow) annotation (Line(points={{-229,20},
+                {-184,20},{-184,4.66667},{-161.333,4.66667}},
                                         color={0,0,127}));
         connect(THotWatSupSet.y, bui.THotWatSupSet) annotation (Line(points={{-168,
                 180},{-40,180},{-40,183},{-12,183}}, color={0,0,127}));
@@ -44597,16 +44967,16 @@ Added documentation.
         connect(dis.TOut, conPum.TMix) annotation (Line(points={{22,134},{30,134},{30,
                 120},{-300,120},{-300,-54},{-282,-54}},
                                                color={0,0,127}));
-        connect(TDisWatRet.T, conPum.TSouIn[1]) annotation (Line(points={{69,0},{60,0},
-                {60,80},{-304,80},{-304,-61},{-282,-61}},
+        connect(TDisWatRet.T, conPum.TSouIn[1]) annotation (Line(points={{69,0},{
+                60,0},{60,80},{-304,80},{-304,-60.5},{-282,-60.5}},
                                                   color={0,0,127}));
         connect(TDisWatBorLvg.T, conPum.TSouIn[2]) annotation (Line(points={{-91,-40},
-                {-290,-40},{-290,-58},{-282,-58},{-282,-59}},
+                {-290,-40},{-290,-58},{-282,-58},{-282,-59.5}},
                                                         color={0,0,127}));
         connect(TDisWatBorLvg.T, conPum.TSouOut[1]) annotation (Line(points={{-91,-40},
-                {-290,-40},{-290,-67},{-282,-67}},              color={0,0,127}));
-        connect(TDisWatSup.T, conPum.TSouOut[2]) annotation (Line(points={{-91,20},{-100,
-                20},{-100,60},{-296,60},{-296,-65},{-282,-65}},
+                {-290,-40},{-290,-66.5},{-282,-66.5}},          color={0,0,127}));
+        connect(TDisWatSup.T, conPum.TSouOut[2]) annotation (Line(points={{-91,20},
+                {-100,20},{-100,60},{-296,60},{-296,-65.5},{-282,-65.5}},
                                                          color={0,0,127}));
         connect(gai.y, pumSto.m_flow_in) annotation (Line(points={{-218,-60},{-180,-60},
                 {-180,-68}}, color={0,0,127}));
@@ -44646,6 +45016,82 @@ allowed loop temperature, then the mass flow rate is reduced to save pump energy
 </p>
 </html>"));
       end SeriesVariableFlow;
+
+      model SeriesConstantFlow_chiller
+        "Example of series connection with constant district water mass flow rate"
+        extends estcp.DHC.Examples.Combined.BaseClasses.PartialSeries_chiller(
+            redeclare estcp.DHC.Loads.Combined.BuildingTimeSeriesWithETS_chiller bui[
+            nBui](final filNam=filNam), datDes(
+            mPumDis_flow_nominal=95,
+            mPipDis_flow_nominal=95,
+            dp_length_nominal=250,
+            epsPla=0.935));
+        parameter String filNam[nBui]={
+          "modelica://Buildings/Resources/Data/Experimental/DHC/Loads/Examples/SwissOffice_20190916.mos",
+          "modelica://Buildings/Resources/Data/Experimental/DHC/Loads/Examples/SwissResidential_20190916.mos",
+          "modelica://Buildings/Resources/Data/Experimental/DHC/Loads/Examples/SwissHospital_20190916.mos"}
+          "Library paths of the files with thermal loads as time series";
+        Modelica.Blocks.Sources.Constant masFloMaiPum(
+          k=datDes.mPumDis_flow_nominal)
+          "Distribution pump mass flow rate"
+          annotation (Placement(transformation(extent={{-280,-70},{-260,-50}})));
+        Modelica.Blocks.Sources.Constant masFloDisPla(
+          k=datDes.mPla_flow_nominal)
+          "District water flow rate to plant"
+          annotation (Placement(transformation(extent={{-250,10},{-230,30}})));
+      equation
+        connect(masFloMaiPum.y, pumDis.m_flow_in) annotation (Line(points={{-259,-60},
+                {60,-60},{60,-60},{68,-60}}, color={0,0,127}));
+        connect(pumSto.m_flow_in, masFloMaiPum.y) annotation (Line(points={{-180,-68},
+                {-180,-60},{-259,-60}}, color={0,0,127}));
+        connect(masFloDisPla.y, pla.mPum_flow) annotation (Line(points={{-229,20},
+                {-184,20},{-184,4.66667},{-161.333,4.66667}},
+                                        color={0,0,127}));
+        annotation (
+        Diagram(
+        coordinateSystem(preserveAspectRatio=false, extent={{-360,-260},{360,260}})),
+          __Dymola_Commands(
+        file="modelica://Buildings/Resources/Scripts/Dymola/Experimental/DHC/Examples/Combined/SeriesConstantFlow.mos"
+        "Simulate and plot"),
+        experiment(
+            StopTime=604800,
+            Tolerance=1e-06),
+          Documentation(info="<html>
+<p>
+This is a model of a so-called \"reservoir network\" (Sommer 2020), i.e., a fifth
+generation district system with unidirectional mass flow rate in the
+district loop, and energy transfer stations connected in series.
+In this model, the temperature of the district loop is stabilized through
+the operation of the plant and the borefield.
+The main circulation pump has a constant mass flow rate.
+Each substation takes water from the main district loop and feeds its return water back
+into the main district loop downstream from the intake.
+The pipes of the main loop are designed for a pressure drop of
+<code>dpDis_length_nominal=250</code> Pa/m at the design flow rate.
+</p>
+<h4>References</h4>
+<p>
+Sommer T., Sulzer M., Wetter M., Sotnikov A., Mennel S., Stettler C.
+<i>The reservoir network: A new network topology for district heating
+and cooling.</i>
+Energy, Volume 199, 15 May 2020, 117418.
+</p>
+</html>",       revisions="<html>
+<ul>
+<li>
+February 23, 2021, by Antoine Gautier:<br/>
+Refactored with base classes from the <code>DHC</code> package.<br/>
+This is for
+<a href=\"https://github.com/lbl-srg/modelica-buildings/issues/1769\">
+issue 1769</a>.
+</li>
+<li>
+January 12, 2020, by Michael Wetter:<br/>
+Added documentation.
+</li>
+</ul>
+</html>"));
+      end SeriesConstantFlow_chiller;
 
       package BaseClasses "Package with base classes that are used by multiple models"
         extends Modelica.Icons.BasesPackage;
@@ -44996,6 +45442,310 @@ This record contains parameter declarations used in example models of DHC system
 </p>
 </html>"));
         end DesignDataSeries;
+
+        partial model PartialSeries_chiller "Partial model for series network"
+          extends Modelica.Icons.Example;
+          package Medium = Buildings.Media.Water "Medium model";
+          constant Real facMul = 10
+            "Building loads multiplier factor";
+          parameter Real dpDis_length_nominal(final unit="Pa/m") = 250
+            "Pressure drop per pipe length at nominal flow rate - Distribution line";
+          parameter Real dpCon_length_nominal(final unit="Pa/m") = 250
+            "Pressure drop per pipe length at nominal flow rate - Connection line";
+          parameter Boolean allowFlowReversalSer = true
+            "Set to true to allow flow reversal in the service lines"
+            annotation(Dialog(tab="Assumptions"), Evaluate=true);
+          parameter Boolean allowFlowReversalBui = false
+            "Set to true to allow flow reversal for in-building systems"
+            annotation(Dialog(tab="Assumptions"), Evaluate=true);
+          parameter Integer nBui = datDes.nBui
+            "Number of buildings connected to DHC system"
+            annotation (Evaluate=true);
+          inner parameter
+            estcp.DHC.Examples.Combined.BaseClasses.DesignDataSeries datDes(final
+              mCon_flow_nominal=bui.ets.hex.m1_flow_nominal)  "Design data"
+            annotation (Placement(transformation(extent={{-340,220},{-320,240}})));
+          // COMPONENTS
+          estcp.DHC.Plants.Reservoir.BoreField borFie(redeclare final package
+              Medium = Medium) "Bore field" annotation (Placement(
+                transformation(
+                extent={{-10,-10},{10,10}},
+                rotation=0,
+                origin={-130,-80})));
+          estcp.DHC.EnergyTransferStations.BaseClasses.Pump_m_flow pumDis(
+            redeclare final package Medium = Medium,
+            final m_flow_nominal=datDes.mPumDis_flow_nominal,
+            final allowFlowReversal=allowFlowReversalSer,
+            dp_nominal=150E3) "Distribution pump" annotation (Placement(
+                transformation(
+                extent={{10,-10},{-10,10}},
+                rotation=90,
+                origin={80,-60})));
+          Buildings.Fluid.Sources.Boundary_pT bou(
+            redeclare final package Medium=Medium,
+            final nPorts=1)
+            "Boundary pressure condition representing the expansion vessel"
+            annotation (Placement(transformation(
+                extent={{-10,-10},{10,10}},
+                rotation=180,
+                origin={112,-20})));
+          estcp.DHC.EnergyTransferStations.BaseClasses.Pump_m_flow pumSto(
+              redeclare final package Medium = Medium, m_flow_nominal=datDes.mSto_flow_nominal)
+            "Bore field pump" annotation (Placement(transformation(
+                extent={{10,10},{-10,-10}},
+                rotation=180,
+                origin={-180,-80})));
+          estcp.DHC.Networks.Combined.BaseClasses.ConnectionSeriesStandard conPla(
+            redeclare final package Medium = Medium,
+            final mDis_flow_nominal=datDes.mPipDis_flow_nominal,
+            final mCon_flow_nominal=datDes.mPla_flow_nominal,
+            lDis=0,
+            lCon=0,
+            final dhDis=0.2,
+            final dhCon=0.2,
+            final allowFlowReversal=allowFlowReversalSer)
+            "Connection to the plant (pressure drop lumped in plant and network model)"
+            annotation (Placement(transformation(
+                extent={{-10,-10},{10,10}},
+                rotation=90,
+                origin={-80,-10})));
+          estcp.DHC.Networks.Combined.BaseClasses.ConnectionSeriesStandard conSto(
+            redeclare final package Medium = Medium,
+            final mDis_flow_nominal=datDes.mPipDis_flow_nominal,
+            final mCon_flow_nominal=datDes.mSto_flow_nominal,
+            lDis=0,
+            lCon=0,
+            final dhDis=0.2,
+            final dhCon=0.2,
+            final allowFlowReversal=allowFlowReversalSer)
+            "Connection to the bore field (pressure drop lumped in plant and network model)"
+            annotation (Placement(transformation(
+                extent={{-10,-10},{10,10}},
+                rotation=90,
+                origin={-80,-90})));
+          estcp.DHC.Plants.Heating.SewageHeatRecovery pla(
+            redeclare final package Medium = Medium,
+            final mSew_flow_nominal=datDes.mPla_flow_nominal,
+            final mDis_flow_nominal=datDes.mPla_flow_nominal,
+            final dpSew_nominal=datDes.dpPla_nominal,
+            final dpDis_nominal=datDes.dpPla_nominal,
+            final epsHex=datDes.epsPla) "Sewage heat recovery plant"
+            annotation (Placement(transformation(extent={{-160,-10},{-140,10}})));
+          estcp.DHC.Networks.Combined.UnidirectionalSeries dis(
+            redeclare final package Medium = Medium,
+            final nCon=nBui,
+            show_TOut=true,
+            final mDis_flow_nominal=datDes.mPipDis_flow_nominal,
+            final mCon_flow_nominal=datDes.mCon_flow_nominal,
+            final dp_length_nominal=datDes.dp_length_nominal,
+            final lDis=datDes.lDis,
+            final lCon=datDes.lCon,
+            final lEnd=datDes.lEnd,
+            final allowFlowReversal=allowFlowReversalSer)
+            "Distribution network"
+            annotation (Placement(transformation(extent={{-20,130},{20,150}})));
+          replaceable
+            Loads.Combined.BaseClasses.PartialBuildingWithETS_chiller   bui[nBui]
+            constrainedby
+            estcp.DHC.Loads.Combined.BaseClasses.PartialBuildingWithETS(
+            bui(each final facMul=facMul),
+            redeclare each final package MediumBui = Medium,
+            redeclare each final package MediumSer = Medium,
+            each final allowFlowReversalBui=allowFlowReversalBui,
+            each final allowFlowReversalSer=allowFlowReversalSer)
+            "Building and ETS"
+            annotation (Placement(transformation(extent={{-10,170},{10,190}})));
+          Buildings.Fluid.Sensors.TemperatureTwoPort TDisWatSup(redeclare
+              final package Medium = Medium, final m_flow_nominal=datDes.mPumDis_flow_nominal)
+            "District water supply temperature" annotation (Placement(
+                transformation(
+                extent={{-10,-10},{10,10}},
+                rotation=90,
+                origin={-80,20})));
+          Buildings.Fluid.Sensors.TemperatureTwoPort TDisWatRet(redeclare
+              final package Medium = Medium, final m_flow_nominal=datDes.mPumDis_flow_nominal)
+            "District water return temperature" annotation (Placement(
+                transformation(
+                extent={{10,-10},{-10,10}},
+                rotation=90,
+                origin={80,0})));
+          Buildings.Fluid.Sensors.TemperatureTwoPort TDisWatBorLvg(redeclare
+              final package Medium = Medium, final m_flow_nominal=datDes.mPumDis_flow_nominal)
+            "District water borefield leaving temperature" annotation (
+              Placement(transformation(
+                extent={{-10,-10},{10,10}},
+                rotation=90,
+                origin={-80,-40})));
+          Modelica.Blocks.Sources.Constant TSewWat(k=273.15 + 17)
+            "Sewage water temperature"
+            annotation (Placement(transformation(extent={{-280,30},{-260,50}})));
+         Buildings.Controls.OBC.CDL.Reals.Sources.Constant THeaWatSupMaxSet[nBui](
+            k=bui.THeaWatSup_nominal)
+            "Heating water supply temperature set point - Maximum value"
+            annotation (Placement(transformation(extent={{-250,210},{-230,230}})));
+         Buildings.Controls.OBC.CDL.Reals.Sources.Constant TChiWatSupSet[nBui](
+            k=bui.TChiWatSup_nominal)
+            "Chilled water supply temperature set point"
+            annotation (Placement(transformation(extent={{-220,190},{-200,210}})));
+         Buildings.Controls.OBC.CDL.Reals.Sources.Constant THeaWatSupMinSet[nBui](
+            each k=28 + 273.15)
+            "Heating water supply temperature set point - Minimum value"
+            annotation (Placement(transformation(extent={{-280,230},{-260,250}})));
+         Buildings.Controls.OBC.CDL.Reals.MultiSum PPumETS(
+            final nin=nBui)
+            "ETS pump power"
+            annotation (Placement(transformation(extent={{140,190},{160,210}})));
+          Modelica.Blocks.Continuous.Integrator EPumETS(
+            initType=Modelica.Blocks.Types.Init.InitialState)
+            "ETS pump electric energy"
+            annotation (Placement(transformation(extent={{220,190},{240,210}})));
+          Modelica.Blocks.Continuous.Integrator EPumDis(
+            initType=Modelica.Blocks.Types.Init.InitialState)
+            "Distribution pump electric energy"
+            annotation (Placement(transformation(extent={{220,-90},{240,-70}})));
+          Modelica.Blocks.Continuous.Integrator EPumSto(
+            initType=Modelica.Blocks.Types.Init.InitialState)
+            "Storage pump electric energy"
+            annotation (Placement(transformation(extent={{220,-150},{240,-130}})));
+          Modelica.Blocks.Continuous.Integrator EPumPla(initType=Modelica.Blocks.Types.Init.InitialState)
+            "Plant pump electric energy"
+            annotation (Placement(transformation(extent={{220,30},{240,50}})));
+         Buildings.Controls.OBC.CDL.Reals.MultiSum EPum(nin=4)
+            "Total pump electric energy"
+            annotation (Placement(transformation(extent={{280,110},{300,130}})));
+         Buildings.Controls.OBC.CDL.Reals.MultiSum PHeaPump(nin=nBui)
+            "Heat pump power"
+            annotation (Placement(transformation(extent={{140,150},{160,170}})));
+          Modelica.Blocks.Continuous.Integrator EHeaPum(
+            initType=Modelica.Blocks.Types.Init.InitialState)
+            "Heat pump electric energy"
+            annotation (Placement(transformation(extent={{220,150},{240,170}})));
+         Buildings.Controls.OBC.CDL.Reals.MultiSum ETot(nin=2) "Total electric energy"
+            annotation (Placement(transformation(extent={{320,150},{340,170}})));
+          estcp.DHC.Loads.BaseClasses.ConstraintViolation conVio(
+            final uMin(
+              final unit="K",
+              displayUnit="degC") = datDes.TLooMin,
+            final uMax(
+              final unit="K",
+              displayUnit="degC") = datDes.TLooMax,
+            final nu=3 + nBui,
+            u(each final unit="K", each displayUnit="degC"))
+            "Check if loop temperatures are within given range"
+            annotation (Placement(transformation(extent={{320,10},{340,30}})));
+        equation
+          connect(dis.TOut, conVio.u[4:4+nBui-1]);
+          connect(bou.ports[1], pumDis.port_a)
+            annotation (Line(points={{102,-20},{80,-20},{80,-50}}, color={0,127,255}));
+          connect(borFie.port_b, conSto.port_aCon) annotation (Line(points={{-120,-80},
+                  {-100,-80},{-100,-84},{-90,-84}}, color={0,127,255}));
+          connect(pumDis.port_b, conSto.port_aDis) annotation (Line(points={{80,-70},{
+                  80,-120},{-80,-120},{-80,-100}}, color={0,127,255}));
+          connect(borFie.port_a, pumSto.port_b)
+            annotation (Line(points={{-140,-80},{-170,-80}}, color={0,127,255}));
+          connect(conSto.port_bCon, pumSto.port_a) annotation (Line(points={{-90,-90},{
+                  -100,-90},{-100,-100},{-200,-100},{-200,-80},{-190,-80}}, color={0,
+                  127,255}));
+          connect(conPla.port_bDis, TDisWatSup.port_a)
+            annotation (Line(points={{-80,0},{-80,10}}, color={0,127,255}));
+          connect(TDisWatSup.port_b, dis.port_aDisSup) annotation (Line(points={{-80,30},
+                  {-80,140},{-20,140}}, color={0,127,255}));
+          connect(dis.port_bDisSup, TDisWatRet.port_a)
+            annotation (Line(points={{20,140},{80,140},{80,10}}, color={0,127,255}));
+          connect(TDisWatRet.port_b, pumDis.port_a)
+            annotation (Line(points={{80,-10},{80,-50}}, color={0,127,255}));
+          connect(conSto.port_bDis, TDisWatBorLvg.port_a)
+            annotation (Line(points={{-80,-80},{-80,-50}}, color={0,127,255}));
+          connect(TDisWatBorLvg.port_b, conPla.port_aDis)
+            annotation (Line(points={{-80,-30},{-80,-20}}, color={0,127,255}));
+          connect(bui.port_bSerAmb, dis.ports_aCon) annotation (Line(points={{10,180},{20,
+                  180},{20,160},{12,160},{12,150}}, color={0,127,255}));
+          connect(dis.ports_bCon, bui.port_aSerAmb) annotation (Line(points={{-12,150},{
+                  -12,160},{-20,160},{-20,180},{-10,180}}, color={0,127,255}));
+          connect(TSewWat.y, pla.TSewWat) annotation (Line(points={{-259,40},{
+                  -180,40},{-180,7.33333},{-161.333,7.33333}},
+                                      color={0,0,127}));
+          connect(THeaWatSupMaxSet.y, bui.THeaWatSupMaxSet) annotation (Line(points={{-228,
+                  220},{-20,220},{-20,187},{-12,187}}, color={0,0,127}));
+          connect(TChiWatSupSet.y, bui.TChiWatSupSet) annotation (Line(points={{-198,200},
+                  {-24,200},{-24,185},{-12,185}},      color={0,0,127}));
+          connect(pla.port_bSerAmb, conPla.port_aCon) annotation (Line(points={{-140,1.33333},
+                  {-100,1.33333},{-100,-4},{-90,-4}}, color={0,127,255}));
+          connect(conPla.port_bCon, pla.port_aSerAmb) annotation (Line(points={{-90,-10},
+                  {-100,-10},{-100,-20},{-200,-20},{-200,1.33333},{-160,1.33333}},
+                color={0,127,255}));
+          connect(THeaWatSupMinSet.y, bui.THeaWatSupMinSet) annotation (Line(points={{-258,
+                  240},{-16,240},{-16,189},{-12,189}}, color={0,0,127}));
+          connect(bui.PPumETS, PPumETS.u)
+            annotation (Line(points={{7,192},{7,200},{138,200}}, color={0,0,127}));
+          connect(PPumETS.y, EPumETS.u)
+            annotation (Line(points={{162,200},{218,200}}, color={0,0,127}));
+          connect(pumDis.P, EPumDis.u)
+            annotation (Line(points={{71,-71},{71,-80},{218,-80}}, color={0,0,127}));
+          connect(pumSto.P, EPumSto.u) annotation (Line(points={{-169,-71},{-160,-71},{-160,
+                  -140},{218,-140}}, color={0,0,127}));
+          connect(pla.PPum, EPumPla.u) annotation (Line(points={{-138.667,
+                  5.33333},{-120,5.33333},{-120,40},{218,40}},
+                                                     color={0,0,127}));
+          connect(EPumETS.y, EPum.u[1]) annotation (Line(points={{241,200},{260,200},{260,
+                  119.25},{278,119.25}},
+                                       color={0,0,127}));
+          connect(EPumPla.y, EPum.u[2]) annotation (Line(points={{241,40},{260,40},{260,
+                  119.75},{278,119.75}},
+                                       color={0,0,127}));
+          connect(EPumDis.y, EPum.u[3]) annotation (Line(points={{241,-80},{262,-80},{262,
+                  120.25},{278,120.25}},
+                                       color={0,0,127}));
+          connect(EPumSto.y, EPum.u[4]) annotation (Line(points={{241,-140},{264,-140},{
+                  264,120.75},{278,120.75}},
+                                           color={0,0,127}));
+          connect(PHeaPump.y, EHeaPum.u)
+            annotation (Line(points={{162,160},{218,160}}, color={0,0,127}));
+          connect(EHeaPum.y, ETot.u[1]) annotation (Line(points={{241,160},{300,160},{300,
+                  159.5},{318,159.5}}, color={0,0,127}));
+          connect(EPum.y, ETot.u[2]) annotation (Line(points={{302,120},{310,120},{310,160.5},
+                  {318,160.5}},    color={0,0,127}));
+          connect(TDisWatSup.T, conVio.u[1]) annotation (Line(points={{-91,20},{-100,20},
+                  {-100,12},{-60,12},{-60,20},{318,20}},           color={0,0,127}));
+          connect(TDisWatBorLvg.T, conVio.u[2]) annotation (Line(points={{-91,-40},{-100,
+                  -40},{-100,-30},{-60,-30},{-60,-40},{300,-40},{300,20},{318,20}},
+                                                                color={0,0,127}));
+          connect(TDisWatRet.T, conVio.u[3]) annotation (Line(points={{69,6.66134e-16},{
+                  60,6.66134e-16},{60,20},{318,20}},           color={0,0,127}));
+          connect(bui.PCoo, PHeaPump.u) annotation (Line(points={{12,187},{132,
+                  187},{132,160},{138,160}}, color={0,0,127}));
+          annotation (Diagram(
+            coordinateSystem(preserveAspectRatio=false, extent={{-360,-260},{360,260}})),
+              Documentation(revisions="<html>
+<ul>
+<li>
+June 2, 2023, by Michael Wetter:<br/>
+Added units to <code>conVio</code>.
+</li>
+<li>
+November 16, 2022, by Michael Wetter:<br/>
+Set correct nominal pressure for distribution pump.
+</li>
+<li>
+February 23, 2021, by Antoine Gautier:<br/>
+Refactored with base classes from the <code>DHC</code> package.<br/>
+This is for
+<a href=\"https://github.com/lbl-srg/modelica-buildings/issues/1769\">
+issue 1769</a>.
+</li>
+<li>
+January 16, 2020, by Michael Wetter:<br/>
+Added documentation.
+</li>
+</ul>
+</html>",         info="<html>
+<p>
+Partial model that is used by the reservoir network models.
+The reservoir network models extend this model, add controls,
+and configure some component sizes.
+</p>
+</html>"));
+        end PartialSeries_chiller;
       annotation (Documentation(info="<html>
 <p>
 This package contains base classes that are used to construct the classes in
@@ -45866,22 +46616,15 @@ Buildings.Experimental.DHC</a>.
 
   package Tests
     extends Modelica.Icons.ExamplesPackage;
-    model test_chiller
-      EnergyTransferStations.Combined.ChillerBorefield ets
-        annotation (Placement(transformation(extent={{-28,-40},{32,20}})));
+    model pb_hea
+      Loads.Combined.BuildingTimeSeriesWithETS buildingTimeSeriesWithETS
+        annotation (Placement(transformation(extent={{-60,40},{-40,60}})));
+      Loads.Combined.BuildingTimeSeriesWithETS_chiller
+        buildingTimeSeriesWithETS_chiller
+        annotation (Placement(transformation(extent={{0,40},{20,60}})));
       annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
             coordinateSystem(preserveAspectRatio=false)));
-    end test_chiller;
-
-    model loads
-      annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
-            coordinateSystem(preserveAspectRatio=false)));
-    end loads;
-
-    model pb_diff
-      annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
-            coordinateSystem(preserveAspectRatio=false)));
-    end pb_diff;
+    end pb_hea;
   end Tests;
   annotation (
     preferredView="info",
