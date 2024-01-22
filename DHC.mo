@@ -42996,8 +42996,8 @@ First implementation. This is for
                 Line(points={{-100,-60},{100,-60}}, color={28,108,200}),
                 Line(points={{-100,60},{100,60}}, color={28,108,200}),
                 Line(points={{-42,-60}}, color={28,108,200}),
-                Line(points={{-60,-58},{-60,50},{0,50},{0,-52},{60,-52},{60,60}}, color=
-                     {28,108,200}),
+                Line(points={{-60,-58},{-60,50},{0,50},{0,-52},{60,-52},{60,60}}, color
+                    ={28,108,200}),
                 Rectangle(
                   extent={{-28,40},{32,-40}},
                   lineColor={0,0,0},
@@ -46617,14 +46617,16 @@ Buildings.Experimental.DHC</a>.
   package Tests
     extends Modelica.Icons.ExamplesPackage;
     model pb_hea
-      Loads.Combined.BuildingTimeSeriesWithETS buildingTimeSeriesWithETS
-        annotation (Placement(transformation(extent={{-60,40},{-40,60}})));
-      Loads.Combined.BuildingTimeSeriesWithETS_chiller
-        buildingTimeSeriesWithETS_chiller
-        annotation (Placement(transformation(extent={{0,40},{20,60}})));
       annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
             coordinateSystem(preserveAspectRatio=false)));
     end pb_hea;
+
+    model tables
+      Modelica.Blocks.Sources.CombiTimeTable combiTimeTable
+        annotation (Placement(transformation(extent={{-80,40},{-60,60}})));
+      annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
+            coordinateSystem(preserveAspectRatio=false)));
+    end tables;
   end Tests;
   annotation (
     preferredView="info",
